@@ -253,6 +253,7 @@ sfx/music/*.m4a
 /data/plugins/
 # plugin loader log files
 /data/logs/
+/data/voice/
 
 Screenshot 2026-02-08 083943.png
 *.pt
