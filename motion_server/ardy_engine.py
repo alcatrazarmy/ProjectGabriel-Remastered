@@ -49,10 +49,10 @@ class ArdyEngine:
         # runs each at 0.2 / 0.6 / 2.0s:
         #   long history smothers the text condition. a 'walks forward' loop
         #   averaged 0.87 m/s at 2.0s with its worst 5s window down at 0.43,
-        #   ie he just stops walking mid prompt. at 0.6s thats 1.04 mean and
+        #   ie she just stops walking mid prompt. at 0.6s thats 1.04 mean and
         #   0.90 worst, the loop actually keeps looping.
         #   short history loses the pose instead. holding a sit for 30s at
-        #   0.2s had him standing back up 45% of the time, at 0.6s 0.7%.
+        #   0.2s had her standing back up 45% of the time, at 0.6s 0.7%.
         # 0.6s (3 tokens) is the only setting that wins both. the upstream
         # interactive demo defaults to 1 token, but it is driven by a human
         # retyping prompts, not by held poses.
@@ -333,7 +333,7 @@ class ArdyEngine:
         autoregressive_step reads them straight off it (_encode_init_history
         recenters on the last history frame and ignores init_global_translation
         entirely when a history is passed). so replaying an older window as-is
-        rewinds him through the world: measured a 14m jump in a single frame
+        rewinds her through the world: measured a 14m jump in a single frame
         mid walk. rotate then translate so the swap is invisible."""
         rep = self.model.motion_rep
         a = rep.unnormalize(anchor)
@@ -365,7 +365,7 @@ class ArdyEngine:
             return hist
         if age < self._anchor_settle:
             # learn what healthy looks like for THIS prompt over a window, not
-            # at one instant: 4s into a walk he is still accelerating, and a
+            # at one instant: 4s into a walk she is still accelerating, and a
             # baseline taken there reads 5.8 against a steady state of 10-12,
             # which trips the divergence test on a perfectly good gait.
             self._anchor = hist.clone()
@@ -482,7 +482,7 @@ class ArdyEngine:
                     self._once_active = False
                     self._truncate_to_served(cut_history=self._begin_stop())
             if self._once_active:
-                # one-shot action: done once he leaves the standing pose and
+                # one-shot action: done once she leaves the standing pose and
                 # comes back to it for a settle period (a double flip stays
                 # non-upright between the flips, so it completes both first)
                 if not self._upright():

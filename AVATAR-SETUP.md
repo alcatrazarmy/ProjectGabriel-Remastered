@@ -2,7 +2,7 @@
 
 Brandon explicitly requested a female avatar. Her name is Yelena Xiomora. The staged base prompt records female/she-her identity, with no invented age, body design, personality or backstory. Voice remains undecided; changing voice or prompt does not change the avatar mesh.
 
-## What Gabriel actually controls
+## What Yelena actually controls
 - src/vrchat.py sends OSC movement and avatar parameters to the running VRChat client. It operates the currently worn avatar, not a bundled character model.
 - No .fbx, .vrm, .vrca or .unitypackage asset was found in unity_assets or in the inspected D:/Projects and D:/Data/brandon/Downloads trees. This is a limited local inventory, not a claim about all drives or avatars available inside the VRChat account. No account/session was opened.
 - unity_assets contains installers, shaders and sensor/puppet rig components, not a verified licensed female character.

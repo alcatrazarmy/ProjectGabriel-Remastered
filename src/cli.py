@@ -1,4 +1,4 @@
-"""CLI formatting utilities for ProjectGabriel."""
+"""CLI formatting utilities for ProjectYelena."""
 import logging
 import sys
 import platform

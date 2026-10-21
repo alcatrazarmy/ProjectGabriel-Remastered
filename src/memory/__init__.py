@@ -1,4 +1,4 @@
-"""Persistent Memory System for ProjectGabriel.
+"""Persistent Memory System for ProjectYelena.
 
 Supports MongoDB (primary) and SQLite (fallback) backends.
 RAG-enabled: Uses Gemini embeddings + MongoDB Atlas Vector Search for

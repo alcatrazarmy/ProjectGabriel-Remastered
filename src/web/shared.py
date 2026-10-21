@@ -177,7 +177,7 @@ def get_full_state() -> dict:
             pass
 
     cfg = shared_state.get("config")
-    app_name = cfg.app_name if cfg else "Gabriel"
+    app_name = cfg.app_name if cfg else "Yelena"
 
     vrchat_info = None
     im = shared_state.get("instance_monitor")

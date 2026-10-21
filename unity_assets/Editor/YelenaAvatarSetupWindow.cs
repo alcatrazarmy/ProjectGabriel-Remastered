@@ -5,20 +5,20 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace ProjectGabriel.Editor
+namespace ProjectYelena.Editor
 {
     /// <summary>
     /// One-stop installer window. Drag your avatar in, tick what you want,
     /// hit Install. The window builds the prefabs (if not already built)
     /// and parents fresh instances onto the avatar at identity transforms.
     ///
-    /// Menu: Tools > ProjectGabriel > Avatar Setup (Installer)
+    /// Menu: Tools > ProjectYelena > Avatar Setup (Installer)
     ///
     /// The older "Build Pose HUD" / "Build Sensor Rig" menu items still
     /// work and just dump the prefabs into the project without touching a
     /// scene avatar, in case you prefer doing the drag-on step yourself.
     /// </summary>
-    public class GabrielAvatarSetupWindow : EditorWindow
+    public class YelenaAvatarSetupWindow : EditorWindow
     {
         private GameObject _avatar;
         private bool _installPoseHud = true;
@@ -27,10 +27,10 @@ namespace ProjectGabriel.Editor
         private Vector2 _scroll;
         private string _statusLog;
 
-        [MenuItem("Tools/ProjectGabriel/Avatar Setup (Installer)")]
+        [MenuItem("Tools/ProjectYelena/Avatar Setup (Installer)")]
         public static void ShowWindow()
         {
-            var w = GetWindow<GabrielAvatarSetupWindow>(false, "Gabriel Avatar Setup", true);
+            var w = GetWindow<YelenaAvatarSetupWindow>(false, "Yelena Avatar Setup", true);
             w.minSize = new Vector2(440, 460);
             w.Show();
         }
@@ -74,7 +74,7 @@ namespace ProjectGabriel.Editor
                 fontSize = 16,
                 alignment = TextAnchor.MiddleLeft
             };
-            GUILayout.Label("ProjectGabriel Avatar Setup", style);
+            GUILayout.Label("ProjectYelena Avatar Setup", style);
             EditorGUILayout.LabelField(
                 "Drag your avatar in, pick what to install, hit Install.",
                 EditorStyles.miniLabel);
@@ -137,18 +137,18 @@ namespace ProjectGabriel.Editor
 
             _installPoseHud = EditorGUILayout.ToggleLeft(
                 new GUIContent("Pose HUD (bottom-left coord strip)",
-                    "Adds the GabrielPoseHUD child that broadcasts world XYZ + yaw via a screen-space color strip."),
+                    "Adds the YelenaPoseHUD child that broadcasts world XYZ + yaw via a screen-space color strip."),
                 _installPoseHud);
 
             _installSensorRig = EditorGUILayout.ToggleLeft(
                 new GUIContent("Sensor Rig (raycast empties)",
-                    "Adds the GabrielSensorRig child with 12 VRCRaycast empties grouped under HeadAnchor / HipsAnchor / RootAnchor."),
+                    "Adds the YelenaSensorRig child with 12 VRCRaycast empties grouped under HeadAnchor / HipsAnchor / RootAnchor."),
                 _installSensorRig);
 
             EditorGUILayout.Space(4);
             _replaceExisting = EditorGUILayout.ToggleLeft(
                 new GUIContent("Replace existing instances",
-                    "If an old GabrielPoseHUD / GabrielSensorRig child already exists on the avatar, delete it before installing the fresh one."),
+                    "If an old YelenaPoseHUD / YelenaSensorRig child already exists on the avatar, delete it before installing the fresh one."),
                 _replaceExisting);
 
             EditorGUILayout.EndVertical();
@@ -179,9 +179,9 @@ namespace ProjectGabriel.Editor
         {
             if (GUILayout.Button("Rebuild prefabs only (no install)"))
             {
-                GabrielPoseHudBuilder.BuildPrefab(verbose: true);
-                GabrielSensorRigBuilder.BuildPrefab(verbose: true);
-                Log("rebuilt both prefabs under Assets/ProjectGabriel/Generated/.");
+                YelenaPoseHudBuilder.BuildPrefab(verbose: true);
+                YelenaSensorRigBuilder.BuildPrefab(verbose: true);
+                Log("rebuilt both prefabs under Assets/ProjectYelena/Generated/.");
             }
         }
 
@@ -192,20 +192,20 @@ namespace ProjectGabriel.Editor
             _statusLog = "";
             if (_avatar == null) { Log("no avatar selected."); return; }
 
-            Undo.RegisterFullObjectHierarchyUndo(_avatar, "Install Gabriel Sensing");
+            Undo.RegisterFullObjectHierarchyUndo(_avatar, "Install Yelena Sensing");
 
             if (_installPoseHud)
             {
-                var path = GabrielPoseHudBuilder.BuildPrefab(verbose: false);
+                var path = YelenaPoseHudBuilder.BuildPrefab(verbose: false);
                 if (string.IsNullOrEmpty(path)) Log("pose HUD: build failed (see console).");
-                else InstallPrefab(path, _avatar, "GabrielPoseHUD");
+                else InstallPrefab(path, _avatar, "YelenaPoseHUD");
             }
 
             if (_installSensorRig)
             {
-                var path = GabrielSensorRigBuilder.BuildPrefab(verbose: false);
+                var path = YelenaSensorRigBuilder.BuildPrefab(verbose: false);
                 if (string.IsNullOrEmpty(path)) Log("sensor rig: build failed (see console).");
-                else InstallPrefab(path, _avatar, "GabrielSensorRig");
+                else InstallPrefab(path, _avatar, "YelenaSensorRig");
             }
 
             EditorSceneSetDirty(_avatar);

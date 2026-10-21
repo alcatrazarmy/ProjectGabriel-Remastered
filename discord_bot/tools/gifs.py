@@ -356,7 +356,7 @@ class DiscordGifTool:
         client = self.handler._discord_client
         if client and client.user:
             return f"discord_{client.user.id}"
-        return "projectgabriel_discord_bot"
+        return "projectyelena_discord_bot"
 
     def _normalize_response(self, data, limit, source, source_query):
         payload = data.get("data", {}) if isinstance(data, dict) else {}

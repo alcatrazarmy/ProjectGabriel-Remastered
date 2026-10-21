@@ -1,6 +1,6 @@
 """Voice control tools for the Discord bot.
 
-Connects to the GabrielVoiceControl Vencord plugin's WebSocket server
+Connects to the YelenaVoiceControl Vencord plugin's WebSocket server
 to join/leave voice channels, call users, and manage calls.
 """
 import asyncio
@@ -47,7 +47,7 @@ async def _send_command(op: str, port: int = 9473, **kwargs) -> dict:
     """Send a command to the Vencord plugin and wait for the response."""
     ws = await _get_ws(port)
     if ws is None:
-        return {"success": False, "error": "Vencord plugin not connected. Is Discord open with the GabrielVoiceControl plugin enabled?"}
+        return {"success": False, "error": "Vencord plugin not connected. Is Discord open with the YelenaVoiceControl plugin enabled?"}
 
     nonce = str(uuid.uuid4())
     cmd = {"op": op, "nonce": nonce, **kwargs}
@@ -81,7 +81,7 @@ class VoiceControlTool:
         return [
             types.FunctionDeclaration(
                 name="joinVoiceChannel",
-                description="Join a Discord voice channel. Requires the GabrielVoiceControl Vencord plugin.\n**Invocation Condition:** Call when asked to join a voice channel, VC, or voice chat.",
+                description="Join a Discord voice channel. Requires the YelenaVoiceControl Vencord plugin.\n**Invocation Condition:** Call when asked to join a voice channel, VC, or voice chat.",
                 parameters={
                     "type": "OBJECT",
                     "properties": {

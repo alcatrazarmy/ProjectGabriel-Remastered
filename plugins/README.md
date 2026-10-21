@@ -570,7 +570,7 @@ Plugin tools take the same shape under `plugin_tools.<plugin>`.
   until the tool returns. `non_blocking` lets the tool run in the
   background while the conversation continues, which is what slow
   tools (rendering, network calls) want. Non-blocking handlers run as
-  their own task, so a slow one never holds up Gabriel's audio.
+  their own task, so a slow one never holds up Yelena's audio.
 - `scheduling` only applies to non-blocking calls. `when_idle` waits
   for the model to finish its sentence, `interrupt` makes it report
   the result immediately, `silent` means it never brings it up.

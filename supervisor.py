@@ -1,5 +1,5 @@
 """
-ProjectGabriel Supervisor
+ProjectYelena Supervisor
 Runs main.py with auto-restart on crash.
 Control panel (with music management) is started by main.py.
 Uses the .venv virtual environment.
@@ -120,7 +120,7 @@ class ProcessSupervisor:
         _enable_ansi()
 
         import yaml
-        app_name = "Gabriel"
+        app_name = "Yelena"
         try:
             with open("config.yml", "r", encoding="utf-8") as f:
                 cfg = yaml.safe_load(f)

@@ -1,11 +1,11 @@
-# Gabriel Voice Control - Vencord Plugin
+# Yelena Voice Control - Vencord Plugin
 
-A [Vencord](https://vencord.dev) UserPlugin that allows ProjectGabriel AI to control Discord voice channels and calls via a local WebSocket API.
+A [Vencord](https://vencord.dev) UserPlugin that allows ProjectYelena AI to control Discord voice channels and calls via a local WebSocket API.
 
 ## How It Works
 
 ```
-AI (ProjectGabriel) --WebSocket--> Vencord Plugin (native.ts) --IPC--> Discord (renderer)
+AI (ProjectYelena) --WebSocket--> Vencord Plugin (native.ts) --IPC--> Discord (renderer)
                                                                          |
 Discord Events <-- IPC <-- Vencord Plugin <-- WebSocket broadcast <-- AI receives events
 ```
@@ -34,7 +34,7 @@ You need Vencord built from source. If you haven't done this yet, follow the [of
 Create the `src/userplugins` folder in your Vencord repo if it doesn't exist, then copy this plugin folder into it:
 
 ```
-Vencord/src/userplugins/gabrielVoiceControl/
+Vencord/src/userplugins/yelenaVoiceControl/
     index.ts    (renderer - plugin entry, Discord API calls)
     native.ts   (main process - WebSocket server)
     types.ts    (shared TypeScript types)
@@ -56,13 +56,13 @@ The injector will open and let you patch your Discord install. After patching, r
 
 ### 3. Enable the plugin
 
-Open Discord > Settings > Vencord > Plugins > search **GabrielVoiceControl** > Enable it.
+Open Discord > Settings > Vencord > Plugins > search **YelenaVoiceControl** > Enable it.
 
 Configure the WebSocket port in plugin settings (default: `9473`).
 
 > **Note:** Do NOT use port 6463-6472 as Discord's RPC server uses those.
 
-### 4. AI side (ProjectGabriel)
+### 4. AI side (ProjectYelena)
 
 The voice control tools are automatically available in both the main VRChat AI session and the Discord bot session. The AI connects to `ws://127.0.0.1:9473` on demand when a voice command is invoked.
 

@@ -199,7 +199,7 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
-# ProjectGabriel
+# ProjectYelena
 config.yml
 !.github/ISSUE_TEMPLATE/config.yml
 session_handle.txt
@@ -221,7 +221,7 @@ branding/
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
-gabriel_chroma_db/
+yelena_chroma_db/
 benchmarks/
 
 # Discord bot
@@ -247,6 +247,8 @@ sfx/music/*.m4a
 # this folder by the user.
 /plugins/*
 !/plugins/README.md
+!/plugins/xtts_service/
+!/plugins/elevenlabs/
 # per-plugin runtime data
 /data/plugins/
 # plugin loader log files

@@ -13,7 +13,7 @@ TOKEN_FILE = os.path.join("data", "social_token.json")
 
 
 class SocialClient:
-    """Client for the ProjectGabriel Social Server.
+    """Client for the ProjectYelena Social Server.
     
     Handles authentication, heartbeat, message polling, WebSocket connection,
     and injects received messages into the Gemini Live session.

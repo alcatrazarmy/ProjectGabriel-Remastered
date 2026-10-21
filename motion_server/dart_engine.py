@@ -150,7 +150,7 @@ class MotionEngine:
             sequence_path=spec['seed'],
             batch_size=1,
             device=self.device,
-            enforce_gender='male',
+            enforce_gender='female',
             enforce_zero_beta=1,
             body_type=body_type,
         )

@@ -13,7 +13,7 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 VRCHAT_BASE = "https://api.vrchat.cloud/api/1"
-_VRCAPI_HEADERS = {"User-Agent": "ProjectGabriel/1.0", "Content-Type": "application/json"}
+_VRCAPI_HEADERS = {"User-Agent": "ProjectYelena/1.0", "Content-Type": "application/json"}
 COOKIE_FILE = Path("data/vrchat_cookies.json")
 
 

@@ -20,7 +20,7 @@ cls
 
 echo.
 echo %C%%B%  ====================================================%R%
-echo %C%%B%       ProjectGabriel Social Server Setup%R%
+echo %C%%B%       ProjectYelena Social Server Setup%R%
 echo %C%%B%  ====================================================%R%
 echo.
 

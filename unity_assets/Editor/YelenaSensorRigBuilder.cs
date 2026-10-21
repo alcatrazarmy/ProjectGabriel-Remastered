@@ -6,14 +6,14 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace ProjectGabriel.Editor
+namespace ProjectYelena.Editor
 {
     /// <summary>
-    /// Builds a "Gabriel Sensor Rig" prefab containing all the raycast empties
+    /// Builds a "Yelena Sensor Rig" prefab containing all the raycast empties
     /// the python side expects, grouped under per-bone anchor children so you
     /// can drop a VRCFury Armature Link onto each anchor by hand.
     ///
-    /// Menu: Tools > ProjectGabriel > Build Sensor Rig
+    /// Menu: Tools > ProjectYelena > Build Sensor Rig
     ///
     /// REQUIREMENTS:
     ///   - VRChat Avatar SDK3 (for VRCRaycast + VRCExpressionParameters)
@@ -21,11 +21,11 @@ namespace ProjectGabriel.Editor
     /// The script adds VRCRaycast components via reflection so it compiles
     /// even if the SDK is missing, you just get a warning.
     /// </summary>
-    public static class GabrielSensorRigBuilder
+    public static class YelenaSensorRigBuilder
     {
-        internal const string OUTPUT_DIR = "Assets/ProjectGabriel/Generated";
-        internal const string PREFAB_NAME = "GabrielSensorRig.prefab";
-        private const string PARAMS_NAME = "GabrielSensorParameters.asset";
+        internal const string OUTPUT_DIR = "Assets/ProjectYelena/Generated";
+        internal const string PREFAB_NAME = "YelenaSensorRig.prefab";
+        private const string PARAMS_NAME = "YelenaSensorParameters.asset";
 
         // ray definition table - mirrors unity_assets/AVATAR_SETUP.md
         // (parent bone name, ray name, local euler rot, length meters)
@@ -73,7 +73,7 @@ namespace ProjectGabriel.Editor
             new RayDef("Root", "FloorDown", new Vector3(90, 0, 0), new Vector3(0, 1f, 0), 2.5f),
         };
 
-        [MenuItem("Tools/ProjectGabriel/Build Sensor Rig")]
+        [MenuItem("Tools/ProjectYelena/Build Sensor Rig")]
         public static void Build()
         {
             var path = BuildPrefab(verbose: true);
@@ -91,7 +91,7 @@ namespace ProjectGabriel.Editor
         {
             EnsureFolder(OUTPUT_DIR);
 
-            var root = new GameObject("GabrielSensorRig");
+            var root = new GameObject("YelenaSensorRig");
             try
             {
                 // group rays by bone, each group gets its own armature-linked child
@@ -153,7 +153,7 @@ namespace ProjectGabriel.Editor
                     {
                         Debug.LogWarning(
                             "VRCFury not detected, skipping auto Full Controller wiring. " +
-                            "Add a VRC Fury > Full Controller to the GabrielSensorRig root and drop " +
+                            "Add a VRC Fury > Full Controller to the YelenaSensorRig root and drop " +
                             paramsPath + " into the Parameters list yourself, or the ray " +
                             "params wont publish over OSC."
                         );
@@ -301,7 +301,7 @@ namespace ProjectGabriel.Editor
             try { addParams.Invoke(fc, new object[] { paramsAsset }); }
             catch (Exception e) { Debug.LogWarning("VRCFury AddParams threw: " + e.Message); return false; }
 
-            Debug.Log("Attached VRCFury Full Controller with GabrielSensorParameters.");
+            Debug.Log("Attached VRCFury Full Controller with YelenaSensorParameters.");
             return true;
         }
 

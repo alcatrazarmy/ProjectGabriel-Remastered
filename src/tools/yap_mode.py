@@ -1,7 +1,7 @@
 """Yap mode -- bring back the OG uninterruptible monologue tool.
 
-Old gabriel had this so he could finish a sentence without people
-talking over him. This one is smarter: it mutes the mic the same way
+Old yelena had this so she could finish a sentence without people
+talking over her. This one is smarter: it mutes the mic the same way
 the existing voice tool does, then auto unmutes itself when the model
 actually stops speaking, instead of relying on a dumb 60s timer.
 

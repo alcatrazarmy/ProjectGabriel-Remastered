@@ -1,0 +1,7 @@
+# Separate runtime: A:/Tools/yelena-tts. Install with uv --torch-backend cu128.
+coqui-tts==0.28.0
+torch==2.8.0
+torchaudio==2.8.0
+fastapi==0.156.4
+uvicorn==0.54.0
+soundfile==0.14.0

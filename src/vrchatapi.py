@@ -14,7 +14,7 @@ BASE_URL = "https://api.vrchat.cloud/api/1"
 COOKIE_FILE = Path("data/vrchat_cookies.json")
 FRIENDS_CACHE_FILE = Path("data/vrchat_friends.json")
 FRIENDS_CACHE_MAX_AGE_HOURS = 4
-USER_AGENT = "ProjectGabriel/1.0"
+USER_AGENT = "ProjectYelena/1.0"
 
 
 def _generate_totp(secret: str) -> str:

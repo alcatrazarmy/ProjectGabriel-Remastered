@@ -9,7 +9,7 @@ Preview image: D:/Avatar/Yelena-Xiomora/Yelena-preview.png
 
 Status: an initial static T-pose outfit study, with opaque navy fabric, skirt, gloves/covered legs, and teal belt. Original 54 humanoid bones and VRM expression definitions retained. Garment skinning is provisional; animated deformation has not been tested. The lightweight viewer renders the bind pose and does not implement VRM spring bones, expressions or MToon faithfully. This is not a finished VRChat avatar or a connected talking character.
 
-The standalone launcher is the current local display integration. config/avatar-local.json records paths; Gabriel does not automatically read it. No changes to Gabriel startup, microphone/screen capture, OSC, account credentials or cloud inference were made. There is no valid VRChat avatar ID yet.
+The standalone launcher is the current local display integration. config/avatar-local.json records paths; Yelena does not automatically read it. No changes to Yelena startup, microphone/screen capture, OSC, account credentials or cloud inference were made. There is no valid VRChat avatar ID yet.
 
 Base: Yukari Hasegawa Ver23.03.21 by Kawaiikagari. Originals and exact terms preserved under D:/Avatar/Yelena-Xiomora. Terms permit private modification/use, prohibit unchanged redistribution, and do not treat clothing/hair/eye colour changes alone as a distinct redistributable character. Keep both VRM files, VRoid file, self-contained HTML (which embeds the model), browser profiles and source archive out of GitHub. Only the rendered image was saved to ChatGPT Library for the requested preview.
 

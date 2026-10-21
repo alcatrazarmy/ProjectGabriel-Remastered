@@ -39,8 +39,8 @@ time.sleep(3)
 for name, target, label in (
         ("HipsPitch", 0.5, "PITCH +0.5 (should lean FORWARD)"),
         ("HipsPitch", -0.5, "PITCH -0.5 (should lean BACKWARD)"),
-        ("HipsRoll", 0.5, "ROLL +0.5 (should lean to HIS RIGHT)"),
-        ("HipsRoll", -0.5, "ROLL -0.5 (should lean to HIS LEFT)"),
+        ("HipsRoll", 0.5, "ROLL +0.5 (should lean to HER RIGHT)"),
+        ("HipsRoll", -0.5, "ROLL -0.5 (should lean to HER LEFT)"),
 ):
     print(f"--> {label}")
     ramp(name, target)

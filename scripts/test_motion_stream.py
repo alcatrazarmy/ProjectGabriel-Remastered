@@ -4,7 +4,7 @@
 # frames arrive at 30fps, muscles are exponentially smoothed and sent at
 # 60hz so nothing steps visibly. body frame velocities from the server map
 # to VRChat analog inputs (Vertical/Horizontal/LookHorizontal) so walking
-# motions actually move him through the world, turning included.
+# motions actually move her through the world, turning included.
 #
 # run: python scripts/test_motion_stream.py [server_ip] [prompt]
 # type new prompts at the console to switch motion, ctrl+c to quit.

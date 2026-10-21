@@ -2,13 +2,13 @@
 chcp 65001 > nul 2>&1
 setlocal enabledelayedexpansion
 
-title ProjectGabriel Setup
+title ProjectYelena Setup
 cd /d "%~dp0"
 cls
 
 echo.
 echo   ====================================================
-echo        Project Gabriel - Setup
+echo        Project Yelena - Setup
 echo   ====================================================
 echo.
 

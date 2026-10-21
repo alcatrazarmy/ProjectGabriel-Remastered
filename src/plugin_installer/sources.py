@@ -114,7 +114,7 @@ class GitHubSource(PluginSource):
         try:
             req = urllib.request.Request(
                 self.archive_url,
-                headers={"User-Agent": "ProjectGabriel-PluginInstaller"},
+                headers={"User-Agent": "ProjectYelena-PluginInstaller"},
             )
             with urllib.request.urlopen(req, timeout=30) as resp:
                 self._zip_bytes = resp.read()

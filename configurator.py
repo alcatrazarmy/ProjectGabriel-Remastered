@@ -1,5 +1,5 @@
 """
-ProjectGabriel - Onboarding Configurator
+ProjectYelena - Onboarding Configurator
 Launches a web-based setup wizard that writes config.yml.
 Run after setup.bat installs dependencies.
 """
@@ -518,7 +518,7 @@ def main():
 
     print()
     print("  ====================================================")
-    print("       Project Gabriel - Configuration Wizard")
+    print("       Project Yelena - Configuration Wizard")
     print("  ====================================================")
     print()
     print(f"  Opening configurator at {url}")
@@ -542,7 +542,7 @@ def main():
         print()
         print("  You can close this window now.")
         print()
-        print("  To start Gabriel:    run.bat")
+        print("  To start Yelena:    run.bat")
         print("  To edit config:      configurator.bat")
         print()
     else:

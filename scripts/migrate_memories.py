@@ -1,5 +1,5 @@
 """
-ProjectGabriel - Memory Migration Utility
+ProjectYelena - Memory Migration Utility
 Migrate memories between SQLite, MongoDB, and ChromaDB backends.
 """
 
@@ -43,7 +43,7 @@ def banner():
     print()
     print(f"  {CYAN}{'=' * w}{RST}")
     print(f"  {CYAN}|{RST}{WHITE}{BOLD}{'  Memory Migration Utility':^{w-2}}{RST}{CYAN}|{RST}")
-    print(f"  {CYAN}|{RST}{DIM}{'ProjectGabriel':^{w-2}}{RST}{CYAN}|{RST}")
+    print(f"  {CYAN}|{RST}{DIM}{'ProjectYelena':^{w-2}}{RST}{CYAN}|{RST}")
     print(f"  {CYAN}{'=' * w}{RST}")
     print()
 
@@ -443,7 +443,7 @@ def main():
     memories = []
 
     if src_type == "sqlite":
-        default_path = cfg.get("sqlite_path", "gabriel_memories.sqlite")
+        default_path = cfg.get("sqlite_path", "yelena_memories.sqlite")
         dim(f"  Default path from config: {default_path}")
         dim("  Press Enter to use the default")
         custom = input(f"  {MAGENTA}>{RST} SQLite path [{default_path}]: ").strip()
@@ -458,7 +458,7 @@ def main():
 
     elif src_type == "mongo":
         uri = cfg.get("mongo_uri", "")
-        db_name = cfg.get("mongo_db", "gabriel")
+        db_name = cfg.get("mongo_db", "yelena")
         coll_name = cfg.get("mongo_collection", "memories")
         if not uri:
             uri = input(f"  {MAGENTA}>{RST} MongoDB URI: ").strip()
@@ -471,7 +471,7 @@ def main():
         memories = read_mongo(coll)
 
     elif src_type == "chroma":
-        default_dir = cfg.get("chroma_dir", "gabriel_chroma_db")
+        default_dir = cfg.get("chroma_dir", "yelena_chroma_db")
         dim("  Press Enter to use the default")
         custom = input(f"  {MAGENTA}>{RST} ChromaDB directory [{default_dir}]: ").strip()
         chroma_dir = custom if custom else default_dir
@@ -499,7 +499,7 @@ def main():
     info("Setting up destination...")
 
     if dst_type == "sqlite":
-        default_path = cfg.get("sqlite_path", "gabriel_memories.sqlite")
+        default_path = cfg.get("sqlite_path", "yelena_memories.sqlite")
         dim("  Press Enter to use the default")
         custom = input(f"  {MAGENTA}>{RST} SQLite output path [{default_path}]: ").strip()
         path = custom if custom else default_path
@@ -516,7 +516,7 @@ def main():
 
     elif dst_type == "mongo":
         uri = cfg.get("mongo_uri", "")
-        db_name = cfg.get("mongo_db", "gabriel")
+        db_name = cfg.get("mongo_db", "yelena")
         coll_name = cfg.get("mongo_collection", "memories")
         if not uri:
             uri = input(f"  {MAGENTA}>{RST} MongoDB URI: ").strip()
@@ -534,7 +534,7 @@ def main():
         written, skipped = write_mongo(coll, memories)
 
     elif dst_type == "chroma":
-        default_dir = cfg.get("chroma_dir", "gabriel_chroma_db")
+        default_dir = cfg.get("chroma_dir", "yelena_chroma_db")
         dim("  Press Enter on each to use the recommended default")
         custom = input(f"  {MAGENTA}>{RST} ChromaDB directory [{default_dir}]: ").strip()
         chroma_dir = custom if custom else default_dir

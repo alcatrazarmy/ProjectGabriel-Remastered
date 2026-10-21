@@ -2,7 +2,7 @@
 
 Connects over websocket, receives 30fps retargeted FBT param frames, smooths
 them at 60hz onto VRChat OSC, and maps the body frame velocities to analog
-move/turn inputs so generated walking actually moves him through the world.
+move/turn inputs so generated walking actually moves her through the world.
 Owned by the motion tools, only connects when a motion is first requested.
 """
 
@@ -42,7 +42,7 @@ PARAMS = [
 # standing, the reading slow-follows into a baseline (auto-zeros avatar
 # scale, capsule hover, whatever). when the pose goes low the baseline
 # freezes and the difference = real ground level under the root (slopes,
-# step edges), which the server folds into HipsY so he sits ON the floor
+# step edges), which the server folds into HipsY so she sits ON the floor
 # instead of inside or above it. inert if the avatar has no FloorDown ray.
 FLOOR_RAY = "FloorDown"
 FLOOR_BASE_TAU = 2.0        # s, baseline follow speed while standing
@@ -126,7 +126,7 @@ class PoseTracker:
 
     KP_POS = 1.5        # m/s of correction per meter of error
     KP_YAW = 2.0        # rad/s per rad
-    CORR_MAX = 1.2      # cap position correction so a desync cant send him sprinting
+    CORR_MAX = 1.2      # cap position correction so a desync cant send her sprinting
     YAW_CORR_MAX = 1.5
     STALE_S = 0.6       # ignore poses older than this (decode hiccup)
     DROP_ANCHOR_S = 3.0 # long blind stretch, re-anchor on the next good pose
@@ -239,7 +239,7 @@ class MotionClient:
         self.model = None
         self.owner = None         # 'model' or 'expression', who asked for the current motion
         self._owner_until = 0.0   # model ownership lapses here for finite motions
-        self._locomotion = True   # expression gestures shouldn't walk him off
+        self._locomotion = True   # expression gestures shouldn't walk her off
         self._nav_mode = nav_mode  # 'pause' or 'model' while something else navigates
         self._navigating = False
         self._nav_held = None     # 'paused' or 'walking', what to undo on release
@@ -394,7 +394,7 @@ class MotionClient:
             if self.walks_for_navigation:
                 try:
                     # locomotion off: the generated stride is animation only,
-                    # the navigator owns where he actually goes
+                    # the navigator owns where she actually goes
                     await self.play(NAV_WALK_PROMPT, owner="navigation")
                 except ConnectionError:
                     self._navigating = False
@@ -504,7 +504,7 @@ class MotionClient:
                 if self._navigating:
                     # never touch the move inputs while something else is
                     # driving. in model mode the body still animates a walk,
-                    # it just doesn't decide where he goes
+                    # it just doesn't decide where she goes
                     if self.walks_for_navigation and self._active and self._got_frame:
                         for p in PARAMS:
                             self._osc.send_message(
@@ -519,7 +519,7 @@ class MotionClient:
                         self._osc.send_message(PREFIX + p, float(cur))
                     if not self._locomotion:
                         # gesturing in place, keep the generated root motion
-                        # out of the move inputs so he doesn't drift away
+                        # out of the move inputs so she doesn't drift away
                         sv = sh = sl = 0.0
                         self._zero_inputs()
                     else:

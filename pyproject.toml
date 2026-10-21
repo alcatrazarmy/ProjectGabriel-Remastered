@@ -1,5 +1,5 @@
 [project]
-name = "projectgabriel"
+name = "projectyelena"
 version = "2.0.1"
 description = "Real-time VRChat AI powered by Gemini Live with voice interaction, OSC control, and YOLOv8n person tracking"
 requires-python = ">=3.11,<3.13"
@@ -84,8 +84,8 @@ Repository = "https://github.com/HoppouAI/ProjectGabriel-Remaster"
 Issues = "https://github.com/HoppouAI/ProjectGabriel-Remaster/issues"
 
 [project.scripts]
-gabriel = "main:main"
-gabriel-control = "control_server:run_control_server"
+yelena = "main:main"
+yelena-control = "control_server:run_control_server"
 
 [build-system]
 requires = ["hatchling"]

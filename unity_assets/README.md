@@ -1,4 +1,4 @@
-# Unity Assets for ProjectGabriel
+# Unity Assets for ProjectYelena
 
 Avatar side bits that let the python AI sense the VRChat world and know
 where it is.
@@ -10,14 +10,14 @@ where it is.
   avatar's world XYZ + forward vector. Python screen-captures it and
   decodes back to a `WorldPose`. See `src/pose_decoder.py` for the
   bit-packing format.
-- `Editor/GabrielAvatarSetupWindow.cs` -- one-click installer window.
-  Menu: **Tools > ProjectGabriel > Avatar Setup (Installer)**. Drag
+- `Editor/YelenaAvatarSetupWindow.cs` -- one-click installer window.
+  Menu: **Tools > ProjectYelena > Avatar Setup (Installer)**. Drag
   your avatar in, tick what to install, click the button.
-- `Editor/GabrielPoseHudBuilder.cs` -- builds just the pose strip
-  prefab. Menu: **Tools > ProjectGabriel > Build Pose HUD**. Used by
+- `Editor/YelenaPoseHudBuilder.cs` -- builds just the pose strip
+  prefab. Menu: **Tools > ProjectYelena > Build Pose HUD**. Used by
   the installer window, also usable on its own.
-- `Editor/GabrielSensorRigBuilder.cs` -- builds just the VRCRaycast
-  sensor rig prefab. Menu: **Tools > ProjectGabriel > Build Sensor
+- `Editor/YelenaSensorRigBuilder.cs` -- builds just the VRCRaycast
+  sensor rig prefab. Menu: **Tools > ProjectYelena > Build Sensor
   Rig**.
 - `AVATAR_SETUP.md` -- end-to-end avatar setup guide using the editor
   tools above.
@@ -25,11 +25,11 @@ where it is.
 ## Quick start
 
 1. Copy `unity_assets/` into your VRChat avatar project as
-   `Assets/ProjectGabriel/`.
+   `Assets/ProjectYelena/`.
 2. Make sure VRChat Avatar SDK3 is in the project (VRCFury optional,
    used for the sensor rig armature link + optional pose HUD toggle).
 3. Wait for Unity to compile.
-4. Open **Tools > ProjectGabriel > Avatar Setup (Installer)**, drag
+4. Open **Tools > ProjectYelena > Avatar Setup (Installer)**, drag
    your avatar in, click install. Or follow `AVATAR_SETUP.md` for the
    full manual walkthrough including the VRCFury wiring.
 

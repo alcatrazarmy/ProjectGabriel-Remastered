@@ -12,7 +12,7 @@ AVATARS_CACHE_FILE = Path("data/avatars.json")
 VRCX_ID_FILE = Path("data/vrcx_id.txt")
 VRCX_SEARCH_URL = "https://api.avtrdb.com/v3/avatar/search/vrcx"
 
-# Maps disambiguated display names (e.g. "Gabriel-2") to avatar IDs from the last search
+# Maps disambiguated display names (e.g. "Yelena-2") to avatar IDs from the last search
 _last_search_map: dict[str, str] = {}
 
 

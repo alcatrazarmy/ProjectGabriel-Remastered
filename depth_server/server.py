@@ -1,5 +1,5 @@
 """
-Depth estimation server for ProjectGabriel wanderer.
+Depth estimation server for ProjectYelena wanderer.
 
 Runs a depth model on a dedicated GPU and exposes it via HTTP.
 The wanderer sends frames and receives depth maps, offloading

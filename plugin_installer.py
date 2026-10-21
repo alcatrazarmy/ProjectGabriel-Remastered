@@ -1,4 +1,4 @@
-"""ProjectGabriel - Plugin Installer entry point.
+"""ProjectYelena - Plugin Installer entry point.
 
 Launches the TUI for browsing, installing, and removing plugins from
 the public plugin repo (or a local folder). Run after setup.bat has

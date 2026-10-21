@@ -31,7 +31,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar
-        appName={state?.app_name || 'Gabriel'}
+        appName={state?.app_name || 'Yelena'}
         isConnected={state?.is_connected ?? false}
         isMuted={state?.mic_muted ?? false}
         activeTab={tab}

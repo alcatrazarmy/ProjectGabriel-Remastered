@@ -7,7 +7,7 @@ _BOOT_T0 = time.perf_counter()
 from src.cli import setup_logging, print_startup_info
 
 setup_logging()
-logger = logging.getLogger("gabriel")
+logger = logging.getLogger("yelena")
 _t = time.perf_counter()
 
 # Import tracker FIRST, its module-level code pre-initialises bettercam
@@ -372,7 +372,7 @@ async def main(save_audio=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="ProjectGabriel - VRChat AI")
+    parser = argparse.ArgumentParser(description="ProjectYelena - VRChat AI")
     parser.add_argument("--save-audio", action="store_true",
                         help="Save Gemini voice output to a .wav file on exit")
     args = parser.parse_args()

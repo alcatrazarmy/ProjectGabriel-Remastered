@@ -413,7 +413,7 @@ body {
       <div class="section-body">
         <div class="field">
           <label>Label Text</label>
-          <input type="text" id="opt-label" value="Gabriel" data-param="label">
+          <input type="text" id="opt-label" value="Yelena" data-param="label">
         </div>
         <div class="field">
           <label>Show Label</label>
@@ -748,10 +748,10 @@ body {
     <div style="display:flex;flex-direction:column;align-items:center;width:100%;max-width:800px;" id="previewWrapper">
       <div class="preview-user-container" id="prevUserContainer">
         <div class="preview-user-label" id="prevUserLabel">User</div>
-        <div class="preview-user-text" id="prevUserText">Hey Gabriel, what's up?</div>
+        <div class="preview-user-text" id="prevUserText">Hey Yelena, what's up?</div>
       </div>
       <div class="preview-container" id="prevContainer">
-        <div class="preview-label" id="prevLabel">Gabriel</div>
+        <div class="preview-label" id="prevLabel">Yelena</div>
         <div class="preview-text" id="prevText">Hey! Not much, just hanging out here in VRChat. What are you up to today?</div>
       </div>
     </div>
@@ -831,7 +831,7 @@ body {
 
   // Default values for reset
   var defaults = {
-    'opt-label': 'Gabriel', 'opt-showLabel': true, 'opt-googleFont': '',
+    'opt-label': 'Yelena', 'opt-showLabel': true, 'opt-googleFont': '',
     'opt-fontSize-range': '24', 'opt-fontWeight': '', 'opt-color-picker': '#ffffff', 'opt-color': '',
     'opt-textAlign': '', 'opt-lineHeight-range': '14', 'opt-labelSize-range': '14',
     'opt-labelColor-picker': '#999999', 'opt-labelColor': '',
@@ -1330,13 +1330,13 @@ body {
 
   // Init - fetch app name and apply as default
   fetch('/api/state').then(function(r) { return r.json(); }).then(function(s) {
-    if (s.app_name && s.app_name !== 'Gabriel') {
+    if (s.app_name && s.app_name !== 'Yelena') {
       var name = s.app_name;
       defaults['opt-label'] = name;
       var labelInput = document.getElementById('opt-label');
-      if (labelInput.value === 'Gabriel') labelInput.value = name;
+      if (labelInput.value === 'Yelena') labelInput.value = name;
       var prevLabel = document.getElementById('prevLabel');
-      if (prevLabel && prevLabel.textContent === 'Gabriel') prevLabel.textContent = name;
+      if (prevLabel && prevLabel.textContent === 'Yelena') prevLabel.textContent = name;
       var prevUserText = document.getElementById('prevUserText');
       if (prevUserText) prevUserText.textContent = 'Hey ' + name + ', what\'s up?';
     }

@@ -1,4 +1,4 @@
-# SMPL-X world frames -> Gabriel FBT muscle params.
+# SMPL-X world frames -> Yelena FBT muscle params.
 # DART world is z-up (x right, y forward at canonical facing).
 # smpl local joint frames are axis aligned with the model frame at rest,
 # so swing/twist decomposition against rest bone directions works everywhere.
@@ -62,8 +62,8 @@ PARAM_MUSCLES = {
 # is unobservable while the elbow is straight: measured on the sampler, moving
 # it 0.0 -> 0.4 shifts the standing hand by 0.4mm, so it was never doing the
 # job the old comment claimed. it is very visible once the elbow bends though,
-# 0.4 threw the forearm 15 deg out to the side at mid bend, which is why he ran
-# with his arms winged out. 0.2 keeps the forearm swinging in the sagittal
+# 0.4 threw the forearm 15 deg out to the side at mid bend, which is why she ran
+# with her arms winged out. 0.2 keeps the forearm swinging in the sagittal
 # plane (-3 deg at half bend, +4 at full).
 NEUTRAL = {
     'SpineFB': 0.0, 'SpineLR': 0.0, 'SpineTW': 0.0,
@@ -176,9 +176,9 @@ SIGN.update({
 SCALE = {p: 1.0 for p in PARAM_MUSCLES}
 
 # rig blend grid ranges (FBT_HipsRot clips). regenerated 2026-07 at +-90 so
-# he can actually bow and lie down, was +-40/+-30 before
+# she can actually bow and lie down, was +-40/+-30 before
 # hips rotation range mapped over param -1..1. the rig proxy clips must
-# match (GabrielFBTRigBuilder PITCH_RANGE_DEG / ROLL_RANGE_DEG). 180 covers
+# match (YelenaFBTRigBuilder PITCH_RANGE_DEG / ROLL_RANGE_DEG). 180 covers
 # handstands and lying face down/up in either direction.
 HIPS_PITCH_MAX_DEG = 180.0
 HIPS_ROLL_MAX_DEG = 180.0

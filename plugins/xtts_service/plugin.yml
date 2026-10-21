@@ -1,0 +1,5 @@
+name: xtts_service
+version: 0.1.0
+api_version: 4
+description: Reuse the existing local Companion XTTS speech service
+enabled: true

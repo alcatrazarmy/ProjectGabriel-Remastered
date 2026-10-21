@@ -9,7 +9,7 @@
 # limits the model rollout itself has diverged.
 #
 # locomotion axes are deliberately not driven: a held pose should not move
-# him, and leaving them out keeps the test about pose only.
+# her, and leaving them out keeps the test about pose only.
 #
 # usage: python scripts/diag_motion_hold.py [prompt] [--seconds N] [--server IP]
 

@@ -91,7 +91,7 @@ class BotConfig:
 
     @property
     def voice(self):
-        return self.get("gemini", "voice", default="Puck")
+        return self.get("gemini", "voice", default="Kore")
 
     @property
     def system_prompt(self):

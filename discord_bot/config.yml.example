@@ -1,5 +1,5 @@
 # ╔══════════════════════════════════════════════════════════╗
-# ║       ProjectGabriel Discord Bot Configuration           ║
+# ║       ProjectYelena Discord Bot Configuration           ║
 # ╚══════════════════════════════════════════════════════════╝
 # Copy this file to config.yml and fill in your values.
 #
@@ -51,7 +51,7 @@ gemini:
   # ── Voice Configuration ──
   # Prebuilt voice for the Live session's audio (transcription is captured for text), so this doesn't matter much which one you pick.
   # Available voices: Puck, Charon, Kore, Fenrir, Aoede, Leda, Orus, Zephyr
-  voice: "Puck"
+  voice: "Kore"
 
   # ── Generation Parameters ──
   temperature: 1.0     # 0.0-2.0, controls randomness (default: 1.0, higher = more creative)
@@ -118,7 +118,7 @@ behavior:
 # ══════════════════════════════════════════════════════════
 # Persistent Memory System
 # ══════════════════════════════════════════════════════════
-# Uses the main ProjectGabriel memory system (shared database).
+# Uses the main ProjectYelena memory system (shared database).
 memory:
   enabled: true
 
@@ -201,9 +201,9 @@ discord_rag:
   search_limit: 8
 
   # Gemini plus MongoDB Atlas settings.
-  # mongo_uri can also come from DISCORD_RAG_MONGO_URI or GABRIEL_MONGO_URI.
+  # mongo_uri can also come from DISCORD_RAG_MONGO_URI or YELENA_MONGO_URI.
   mongo_uri: ""
-  mongo_db: "gabriel"
+  mongo_db: "yelena"
   mongo_collection: "discord_messages"
   vector_index: "discord_message_vector_index"
   embedding_model: "gemini-embedding-001"

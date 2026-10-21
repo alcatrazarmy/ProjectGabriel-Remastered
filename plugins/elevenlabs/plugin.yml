@@ -1,0 +1,5 @@
+name: elevenlabs
+version: 0.1.0
+api_version: 4
+description: ElevenLabs speech with credentials read from an existing external dotenv file
+enabled: true

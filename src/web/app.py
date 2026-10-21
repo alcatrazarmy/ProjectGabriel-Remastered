@@ -1,4 +1,4 @@
-"""FastAPI app for the Gabriel control panel. Wires all routers together."""
+"""FastAPI app for the Yelena control panel. Wires all routers together."""
 from pathlib import Path
 
 import uvicorn

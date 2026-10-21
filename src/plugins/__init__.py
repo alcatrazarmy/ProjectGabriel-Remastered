@@ -1,4 +1,4 @@
-"""Plugin system for ProjectGabriel.
+"""Plugin system for ProjectYelena.
 
 Drop a folder into ./plugins/ with a plugin.yml manifest and an __init__.py
 that subclasses Plugin, and it gets loaded on startup. See plugins/README.md

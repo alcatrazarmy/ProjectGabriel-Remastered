@@ -1,4 +1,4 @@
-"""Quick test for the GabrielVoiceControl Vencord plugin WebSocket server."""
+"""Quick test for the YelenaVoiceControl Vencord plugin WebSocket server."""
 import asyncio
 import json
 import uuid
@@ -46,7 +46,7 @@ async def main():
             print("\nAll tests passed!")
 
     except ConnectionRefusedError:
-        print("Connection refused. Is Discord open with GabrielVoiceControl enabled?")
+        print("Connection refused. Is Discord open with YelenaVoiceControl enabled?")
     except Exception as e:
         print(f"Error: {e}")
 

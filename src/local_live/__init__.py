@@ -1,4 +1,4 @@
-"""Local backend for ProjectGabriel.
+"""Local backend for ProjectYelena.
 
 Drop-in replacement for the Gemini Live session, glued together from:
   - parakeet.cpp (NVIDIA NeMo Parakeet on ggml) for streaming / batch STT,

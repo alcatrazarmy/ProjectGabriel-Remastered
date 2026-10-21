@@ -2,7 +2,7 @@
 chcp 65001 > nul 2>&1
 setlocal
 
-title ProjectGabriel
+title ProjectYelena
 cd /d "%~dp0"
 
 if not exist ".venv\Scripts\python.exe" (
@@ -13,7 +13,7 @@ if not exist ".venv\Scripts\python.exe" (
 )
 
 call .venv\Scripts\activate.bat
-echo   Starting ProjectGabriel...
+echo   Starting ProjectYelena...
 echo   Press Ctrl+C to stop.
 echo.
 

@@ -427,7 +427,7 @@ def summary(chose_ardy, chose_dart):
 
 
 def main():
-    print(_c('1;35', '\n  Gabriel motion server installer'))
+    print(_c('1;35', '\n  Yelena motion server installer'))
     print('  models: core8 (ARDY, best quality) / babel + hml3d (DART, original)')
 
     choice = (sys.argv[1] if len(sys.argv) > 1 else '').lower()

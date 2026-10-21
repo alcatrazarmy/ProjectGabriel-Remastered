@@ -1,4 +1,23 @@
-# Yelena Xiomora - Project Gabriel Remastered setup on Deauxma
+# Yelena Xiomora - Project Yelena Remastered setup on Deauxma
+
+Current voice status, 2026-10-21: local Lisa Reichert XTTS is now the default,
+per the user's choice. The isolated A:/Tools/yelena-tts runtime and localhost
+server generated a verified 5.53-second sample on cuda:0. No microphone or
+companion session was started. ElevenLabs remains a manual alternative.
+See LOCAL-SERVICES.md; Lisa Ann authentication is still unresolved.
+
+Latest voice update, 2026-10-21: ElevenLabs Jessica is now selected using the
+user-supplied Pip dotenv file. Its API key was accepted and Jessica is labeled
+female. Pip's original voice/settings remain unchanged. This supersedes the
+XTTS voice choice below; Lisa Ann still needs a valid saved API key. See
+[LOCAL-SERVICES.md](LOCAL-SERVICES.md). No live speech was generated.
+
+2026-10-21 service integration update: this checkout now targets the existing
+Lisa Ann llama.cpp server and includes an adapter for the existing local
+Companion XTTS service. See [LOCAL-SERVICES.md](LOCAL-SERVICES.md). The saved
+Lisa Ann API key is missing and XTTS port 8095 is not listening. Earlier plans
+to provision a new LLM/Pocket TTS stack are superseded. End-to-end startup
+remains unverified.
 
 LATEST VERIFIED STATUS: User approved the two offline navigation test files; 29 tests passed. Initial two fixture errors were resolved by a fresh task-specific D:/Temp basetemp, without changing project logic. Device/network guards recorded zero attempts. Yelena Xiomora requires a female avatar; none is selected yet. Live startup and capture remain unapproved. Earlier pending-test notes below are historical and superseded. See AVATAR-SETUP.md and offline-navigation-tests.txt.
 Status: staged installation; the companion has NOT been launched or verified end to end.

@@ -1,10 +1,26 @@
 # Yelena Xiomora local launch preparation - awaiting execution approval
 
+Current voice status, 2026-10-21: the user selected the downloaded Lisa Reichert
+XTTS model as the default. The isolated runtime is installed, its localhost
+service is running on cuda:0, and a 5.53-second speech sample was generated.
+This supersedes the ElevenLabs default below. See LOCAL-SERVICES.md.
+
+Latest voice selection, 2026-10-21: the user supplied the existing Pip dotenv
+file and requested a female voice. Yelena now selects ElevenLabs Jessica,
+reading credentials from that external file without changing Pip. Speech is
+cloud-based; the earlier XTTS selection below is superseded. See LOCAL-SERVICES.md.
+
+2026-10-21 update: reuse Lisa Ann's existing llama.cpp server and this node's
+Companion XTTS service. The connection settings, environment-key support and
+XTTS adapter are now added to this checkout. See [LOCAL-SERVICES.md](LOCAL-SERVICES.md)
+for current configuration and blockers. The proposed model downloads below
+are superseded; a saved Lisa Ann API key and running XTTS service are still needed.
+
 LATEST VERIFIED STATUS: User approved the two offline navigation test files; 29 tests passed. Initial two fixture errors were resolved by a fresh task-specific D:/Temp basetemp, without changing project logic. Device/network guards recorded zero attempts. Yelena Xiomora requires a female avatar; none is selected yet. Live startup and capture remain unapproved. Earlier pending-test notes below are historical and superseded. See AVATAR-SETUP.md and offline-navigation-tests.txt.
 No project/plugin/runtime model code was executed during this follow-up. No model or extra server was installed. Brandon selected Yelena Xiomora as the character/build name. Active display and prompt names reflect that choice. Voice and personality details remain unspecified.
 
 ## Smallest no-paid-API path examined
-- LLM server: portable official llama.cpp, on A:\Tools\Gabriel\llama.cpp. Gabriel accepts OpenAI-compatible /v1/chat/completions (LM Studio, Ollama, llama.cpp and vLLM are documented alternatives). Portable llama.cpp avoids a global install and supports explicit bind/model paths. LM Studio is the README's default GUI option; no existing running server found.
+- LLM server: portable official llama.cpp, on A:\Tools\Gabriel\llama.cpp. Yelena accepts OpenAI-compatible /v1/chat/completions (LM Studio, Ollama, llama.cpp and vLLM are documented alternatives). Portable llama.cpp avoids a global install and supports explicit bind/model paths. LM Studio is the README's default GUI option; no existing running server found.
 - Lowest-download functional trial: official Qwen3-0.6B Q8_0, 639,446,688 bytes. This is a capability smoke-test candidate, not a promise of good companion/tool behavior.
 - More useful compact baseline: official Qwen3-4B Q4_K_M, 2,497,280,256 bytes. Use a limited tool set and non-thinking/concise behavior; validate tool calls locally before enabling actions. No vision in these text-only choices.
 - STT: built-in Parakeet, smallest documented realtime_eou_120m-v1-q8_0.gguf is 176,001,472 bytes. Default tdt-0.6b-v3-q8_0.gguf is 940,663,680 bytes. The tiny streaming path is documented but WIP; larger default is fallback if unreliable.
@@ -42,7 +58,7 @@ OSC receive already binds 127.0.0.1 upstream; main still constructs that listene
 ## One consolidated launch decision/permission bundle for parent
 Ask Brandon to choose practical local setup (4B LLM + Pocket built-in voice + default STT) or minimum-download trial (0.6B + tiny STT), choose a built-in voice (character/build name is Yelena Xiomora), and authorize the following clearly bounded actions together if desired:
 1. Download/provision the selected official portable LLM server/models and reviewed Pocket plugin/deps on A:/D: as above; verify immutable revisions/hashes before execution. No paid APIs, accounts or global installs.
-2. Execute the pinned Gabriel offline navigation tests; then execute the reviewed local inference server, Pocket model/plugin, Parakeet DLL, and pinned Silero hub code. Opening only localhost listeners (LLM 1234, dashboard 8766, OSC receive 9001 if needed), no firewall changes, no LAN/public exposure. Proposed LLM command after inspecting its extracted executable is `llama-server.exe -m D:\Models\Gabriel\Qwen3-4B-Q4_K_M.gguf --host 127.0.0.1 --port 1234 --jinja` (adjust model for trial). Do not execute until artifacts are concretely inspected and action-time approval covers them.
+2. Execute the pinned Yelena offline navigation tests; then execute the reviewed local inference server, Pocket model/plugin, Parakeet DLL, and pinned Silero hub code. Opening only localhost listeners (LLM 1234, dashboard 8766, OSC receive 9001 if needed), no firewall changes, no LAN/public exposure. Proposed LLM command after inspecting its extracted executable is `llama-server.exe -m D:\Models\Gabriel\Qwen3-4B-Q4_K_M.gguf --host 127.0.0.1 --port 1234 --jinja` (adjust model for trial). Do not execute until artifacts are concretely inspected and action-time approval covers them.
 3. Choose first experience: standalone text/mock only (requires reviewed no-device startup adaptation), local microphone/speaker conversation (explicit mic/audio permission, and remove unnecessary screen/OSC startup), or VRChat integration (explicit screen capture + OSC movement/chatbox permission and user-prepared private session). None authorizes account login, public-world interaction, Discord messaging or desktop control.
 4. For later VRChat voice routing, determine existing virtual cables before installing any audio drivers; driver/global changes need separate concrete approval if actually necessary. Motion generation, Unity/avatar modifications, gated body/encoder models and voice cloning are deferred optional features, not prerequisites for the first local companion.
 

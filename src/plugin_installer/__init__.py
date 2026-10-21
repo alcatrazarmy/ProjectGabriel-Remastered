@@ -1,4 +1,4 @@
-"""Interactive plugin installer for ProjectGabriel.
+"""Interactive plugin installer for ProjectYelena.
 
 Public entry point: `from src.plugin_installer.tui import run`.
 """

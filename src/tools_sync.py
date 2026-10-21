@@ -45,7 +45,7 @@ HEADER_COMMENT = (
     + HEADER_MARKER
     + "\n\n"
     + """\
-This file is auto-managed. On every startup ProjectGabriel walks the
+This file is auto-managed. On every startup ProjectYelena walks the
 live tool registry and adds any newly discovered tool here, defaulting
 it to enabled. Your existing values are never overwritten, so anything
 you change in here sticks across upgrades.

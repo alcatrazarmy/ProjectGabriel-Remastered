@@ -3,10 +3,10 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace ProjectGabriel.Editor
+namespace ProjectYelena.Editor
 {
     /// <summary>
-    /// Builds the "Gabriel Pose HUD" prefab using the screen-space PoseExfil
+    /// Builds the "Yelena Pose HUD" prefab using the screen-space PoseExfil
     /// shader.
     ///
     /// Setup: drop the prefab onto your avatar root and upload. Do NOT
@@ -21,7 +21,7 @@ namespace ProjectGabriel.Editor
     /// mesh size only affects culling, not what gets drawn. The strip
     /// always lands in the bottom-left of the screen.
     ///
-    /// Menu: Tools > ProjectGabriel > Build Pose HUD
+    /// Menu: Tools > ProjectYelena > Build Pose HUD
     ///
     /// PRIVACY WARNING: anyone whose camera renders your avatar will also
     /// see the cell grid in their view, and a determined attacker could
@@ -29,13 +29,13 @@ namespace ProjectGabriel.Editor
     /// renderer when you don't need navigation.
     /// Default grid is 34x2 cells at 8 px per cell = 272x16 screen pixels.
     /// </summary>
-    public static class GabrielPoseHudBuilder
+    public static class YelenaPoseHudBuilder
     {
-        internal const string OUTPUT_DIR = "Assets/ProjectGabriel/Generated";
-        internal const string PREFAB_NAME = "GabrielPoseHUD.prefab";
-        private const string MAT_NAME = "GabrielPoseHUD.mat";
-        private const string MESH_NAME = "GabrielPoseHUDQuad.asset";
-        private const string SHADER_NAME = "ProjectGabriel/PoseExfilScreen";
+        internal const string OUTPUT_DIR = "Assets/ProjectYelena/Generated";
+        internal const string PREFAB_NAME = "YelenaPoseHUD.prefab";
+        private const string MAT_NAME = "YelenaPoseHUD.mat";
+        private const string MESH_NAME = "YelenaPoseHUDQuad.asset";
+        private const string SHADER_NAME = "ProjectYelena/PoseExfilScreen";
 
         // grid is GRID_W x GRID_H cells, each CELL_SIZE x CELL_SIZE physical
         // pixels. must match the constants in src/pose_decoder.py.
@@ -50,7 +50,7 @@ namespace ProjectGabriel.Editor
         private static readonly Vector3 BOUNDS_CENTER = new Vector3(0f, 0.75f, 0f);
         private static readonly Vector3 BOUNDS_SIZE   = new Vector3(3f, 3.5f, 3f);
 
-        [MenuItem("Tools/ProjectGabriel/Build Pose HUD")]
+        [MenuItem("Tools/ProjectYelena/Build Pose HUD")]
         public static void Build()
         {
             var path = BuildPrefab(verbose: true);
@@ -83,7 +83,7 @@ namespace ProjectGabriel.Editor
                 }
                 else
                 {
-                    Debug.LogError("[GabrielPoseHudBuilder] shader not found: " + SHADER_NAME);
+                    Debug.LogError("[YelenaPoseHudBuilder] shader not found: " + SHADER_NAME);
                 }
                 return null;
             }
@@ -105,9 +105,9 @@ namespace ProjectGabriel.Editor
             mat.SetFloat("_OffsetY",  OFFSET_Y);
             EditorUtility.SetDirty(mat);
 
-            var root = new GameObject("GabrielPoseHUD");
+            var root = new GameObject("YelenaPoseHUD");
             // ship the prefab with the root disabled. the VRCFury toggle
-            // (Default On + In Local: turn on GabrielPoseHUD) is what
+            // (Default On + In Local: turn on YelenaPoseHUD) is what
             // wakes it up at world join. if you skip the toggle, just
             // tick the GameObject active in the inspector before upload.
             root.SetActive(false);
@@ -157,7 +157,7 @@ namespace ProjectGabriel.Editor
                 AssetDatabase.SaveAssets();
                 if (verbose)
                 {
-                    Debug.Log("[GabrielPoseHudBuilder] built " + prefabPath +
+                    Debug.Log("[YelenaPoseHudBuilder] built " + prefabPath +
                               ". Drop it on your avatar ROOT (NOT under the " +
                               "Head bone - VRChat hides head children in first " +
                               "person) and upload. A 34x2 pixel strip will " +
@@ -194,7 +194,7 @@ namespace ProjectGabriel.Editor
             // override below makes the cull AABB span feet-to-above-head
             // so the camera is always inside regardless of perspective.
             var mesh = new Mesh();
-            mesh.name = "GabrielPoseHUDQuad";
+            mesh.name = "YelenaPoseHUDQuad";
             mesh.vertices = new Vector3[]
             {
                 new Vector3(-0.5f, -0.5f, 0f),

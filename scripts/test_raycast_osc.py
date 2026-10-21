@@ -1,7 +1,7 @@
 """Quick sniffer for the VRCRaycast OSC params, prints them as they arrive.
 
 Run while wearing the sensor-rigged avatar in VRChat with OSC enabled. If
-the main gabriel process is running it'll have port 9001 bound and you
+the main yelena process is running it'll have port 9001 bound and you
 need to stop it first, or pass a different port.
 
 Usage:

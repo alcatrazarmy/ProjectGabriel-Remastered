@@ -1834,7 +1834,7 @@ wheels = [
 ]
 
 [[package]]
-name = "projectgabriel"
+name = "projectyelena"
 version = "2.0.1"
 source = { editable = "." }
 dependencies = [

@@ -2,7 +2,7 @@
 chcp 65001 > nul 2>&1
 setlocal
 
-title ProjectGabriel - Plugin Installer
+title ProjectYelena - Plugin Installer
 cd /d "%~dp0"
 
 if not exist ".venv\Scripts\python.exe" (

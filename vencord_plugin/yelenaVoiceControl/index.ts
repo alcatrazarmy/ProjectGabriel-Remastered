@@ -1,6 +1,6 @@
 /*
- * Gabriel Voice Control - Vencord UserPlugin
- * Exposes voice channel / call control to ProjectGabriel AI via WebSocket.
+ * Yelena Voice Control - Vencord UserPlugin
+ * Exposes voice channel / call control to ProjectYelena AI via WebSocket.
  * Copyright (c) 2025 HoppouAI
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,7 +11,7 @@ import { FluxDispatcher, RestAPI } from "@webpack/common";
 
 // IPC helpers for communicating with native.ts (resolved lazily)
 function getNative() {
-    return VencordNative.pluginHelpers.GabrielVoiceControl as {
+    return VencordNative.pluginHelpers.YelenaVoiceControl as {
         startServer(port: number): Promise<any>;
         stopServer(): Promise<any>;
         drainCommands(): Promise<Array<{ id: string; cmd: any }>>;
@@ -422,8 +422,8 @@ async function pollCommands() {
 // --- Plugin Definition ---
 
 export default definePlugin({
-    name: "GabrielVoiceControl",
-    description: "Exposes Discord voice/call control to ProjectGabriel AI via WebSocket API",
+    name: "YelenaVoiceControl",
+    description: "Exposes Discord voice/call control to ProjectYelena AI via WebSocket API",
     authors: [{
         name: "HoppouAI",
         id: 0n,
@@ -446,19 +446,19 @@ export default definePlugin({
         try {
             const native = getNative();
             if (!native) {
-                console.error("[GabrielVoice] Native helpers not available");
+                console.error("[YelenaVoice] Native helpers not available");
                 return;
             }
             const port = this.settings?.store?.port ?? 9473;
             const result = await native.startServer(port);
             if (!result?.success) {
-                console.error("[GabrielVoice] Failed to start server:", result?.error);
+                console.error("[YelenaVoice] Failed to start server:", result?.error);
                 return;
             }
             pollInterval = setInterval(pollCommands, 100);
-            console.log("[GabrielVoice] Plugin started on port", port);
+            console.log("[YelenaVoice] Plugin started on port", port);
         } catch (e) {
-            console.error("[GabrielVoice] start() error:", e);
+            console.error("[YelenaVoice] start() error:", e);
         }
     },
 
@@ -469,9 +469,9 @@ export default definePlugin({
                 pollInterval = null;
             }
             getNative()?.stopServer();
-            console.log("[GabrielVoice] Plugin stopped");
+            console.log("[YelenaVoice] Plugin stopped");
         } catch (e) {
-            console.error("[GabrielVoice] stop() error:", e);
+            console.error("[YelenaVoice] stop() error:", e);
         }
     },
 });

@@ -1,9 +1,9 @@
 # Motion Server
 
-Real time full body motion generation for Gabriel. Type a text prompt, a
+Real time full body motion generation for Yelena. Type a text prompt, a
 diffusion model generates human motion frame by frame, and the frames stream
-over a websocket into VRChat as avatar puppet parameters. He dances, sits,
-bows, lies down, waves, and walking motions physically move him through the
+over a websocket into VRChat as avatar puppet parameters. She dances, sits,
+bows, lies down, waves, and walking motions physically move her through the
 world.
 
 https://github.com/user-attachments/assets/ea35eeeb-7c44-4c7f-af70-9b1d3386fbef
@@ -164,8 +164,8 @@ download endpoint respects a browser session cookie:
 ### 5. Unity rig
 
 The DesktopFBT puppet rig lives in the VRChat avatar project, NOT this repo.
-`unity_assets/Editor/GabrielFBTRigBuilder.cs` rebuilds ALL of it from
-nothing: select the avatar root, Tools > ProjectGabriel > Build Desktop FBT
+`unity_assets/Editor/YelenaFBTRigBuilder.cs` rebuilds ALL of it from
+nothing: select the avatar root, Tools > ProjectYelena > Build Desktop FBT
 Rig. It generates every animation clip, the Action controller, the VRC
 expression parameters and menu, the hips proxy transforms and constraint,
 and wires the avatar descriptor. Then reupload the avatar.
@@ -178,11 +178,11 @@ Rig facts (mirrored in retarget.py, keep in sync):
   Each param is a Simple1D tree over min/max clips writing humanoid muscle
   curves with chain weights (SpineFB = Spine 1.0 + Chest 0.7 + UpperChest 0.5).
 - HipsY = humanoid RootT.y. mid is the avatar standing body height
-  (0.98475 for gabriel), +0.80 smpl meters up (real jump apex, dart lifts
+  (0.98475 for yelena), +0.80 smpl meters up (real jump apex, dart lifts
   the pelvis ~0.74m on "a person jumps up high"), -1.00 down (pelvis
   exactly on the floor at param -1). rig units = smpl meters * 1.05346
   (in-game fudge measured against the 1.0148 humanScale avatar).
-- Hips rotation: pitch +-90 deg (+1 = forward), roll +-90 (+1 = his right),
+- Hips rotation: pitch +-90 deg (+1 = forward), roll +-90 (+1 = her right),
   via two proxy transforms under the avatar root
   (FBT_HipsPitchProxy euler x -> FBT_HipsRollProxy euler z) and a
   VRCRotationConstraint on the Hips bone following the roll proxy. The
@@ -201,7 +201,7 @@ Rig facts (mirrored in retarget.py, keep in sync):
 
 `muscle_ranges.json` in this folder is the dump of unity muscle limits +
 humanScale + hips travel used by retarget.py. Regenerate with
-Tools > ProjectGabriel > Export muscle_ranges.json if the avatar changes.
+Tools > ProjectYelena > Export muscle_ranges.json if the avatar changes.
 
 ### 6. ARDY backend (optional, the good one)
 
@@ -264,12 +264,12 @@ tools: `playMotion(prompt, loop, seconds?)`, `stopMotion()`, `resetPose()`.
 
 With `motion.expression` on (ARDY only) the client also drives the body by
 itself the way the canned emotion animations used to: gesture motions while
-he talks, a thinking motion while he thinks, idle fidgets after a quiet
-stretch, and a full `reset` once he has been quiet long enough, which hands
+she talks, a thinking motion while she thinks, idle fidgets after a quiet
+stretch, and a full `reset` once she has been quiet long enough, which hands
 the body back to VRChat and stops the GPU work. Anything the model asks for
 with `playMotion` takes the body and holds it until `stopMotion`, so the two
 layers never fight. Expression motions run with locomotion muted so a fidget
-can't walk him across the room.
+can't walk her across the room.
 
 ## Websocket protocol
 
@@ -350,7 +350,7 @@ Either backend:
 4. `python ../scripts/test_motion_stream.py <host> "<prompt>"` streams to
    vrchat from a terminal, stdin switches prompts.
 5. `python ../scripts/test_hips_axes.py` sweeps HipsPitch/HipsRoll over OSC
-   so you can eyeball in game which way he leans (how the RootQ bug was found).
+   so you can eyeball in game which way she leans (how the RootQ bug was found).
 
 ## Retargeting conventions (retarget.py)
 
@@ -389,9 +389,9 @@ Either backend:
   history each `autoregressive_step`. Length is a genuine tradeoff, measured
   by `benchmarks/ardy_history.py` (3 runs each at 0.2 / 0.6 / 2.0s): long
   history smothers the text condition, so a `walks forward` loop averaged
-  0.87 m/s at 2.0s with its worst 5s window down at 0.43, ie he stops
+  0.87 m/s at 2.0s with its worst 5s window down at 0.43, ie she stops
   walking mid prompt. Short history drops the pose instead, holding a sit
-  for 30s at 0.2s had him standing back up 45% of the time. `--history 0.6`
+  for 30s at 0.2s had her standing back up 45% of the time. `--history 0.6`
   (3 tokens) is the only setting that wins both and is the default. On a
   prompt switch history is cut further, to one token, so the old pose stops
   acting as an attractor.

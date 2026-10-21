@@ -1,10 +1,10 @@
 # Avatar Setup Guide
 
-End to end setup for getting ProjectGabriel's sensing layer onto your
+End to end setup for getting ProjectYelena's sensing layer onto your
 avatar. Two pieces: the **Pose HUD** (screen-space coord strip) and the
 **Sensor Rig** (VRCRaycast nav rays).
 
-Easy path: open **Tools > ProjectGabriel > Avatar Setup (Installer)**,
+Easy path: open **Tools > ProjectYelena > Avatar Setup (Installer)**,
 drag your avatar in, click install. That's the whole technical part.
 The rest of this guide is the manual workflow + the optional VRCFury
 bits (local-only toggle, armature link), which the installer does NOT
@@ -27,7 +27,7 @@ do for you.
 
 ![Avatar with pose strip + raycasts visible in Unity scene view](docs/images/avatar-setup-complete.png)
 
-When everything is wired up and the `GabrielPoseHUD` GameObject is
+When everything is wired up and the `YelenaPoseHUD` GameObject is
 enabled, the Unity Scene view should look roughly like this:
 
 - the yellow lines radiating out from the head and hips are the
@@ -44,15 +44,15 @@ and ray data the moment you upload and put the avatar on.
 ## Step 0: one-time install
 
 1. Copy `unity_assets/` from this repo into your VRChat avatar project
-   as `Assets/ProjectGabriel/`. Any folder path works, the editor scripts
-   write their output under `Assets/ProjectGabriel/Generated/`.
+   as `Assets/ProjectYelena/`. Any folder path works, the editor scripts
+   write their output under `Assets/ProjectYelena/Generated/`.
 2. Confirm you have the **VRChat Avatar SDK3** in the project (the rig
    builder needs `VRCRaycast` for the sensor rays).
 3. **Optional but recommended:** install **VRCFury**. Used for the
    armature link on the sensor rig anchors and for the optional
    local-only toggle on the pose HUD.
 4. Wait for Unity to finish compiling. You should see three new menu
-   items appear under **Tools > ProjectGabriel**:
+   items appear under **Tools > ProjectYelena**:
    - **Avatar Setup (Installer)**: one-click installer window
    - Build Pose HUD: builds just the prefab (manual workflow)
    - Build Sensor Rig: builds just the prefab (manual workflow)
@@ -61,7 +61,7 @@ and ray data the moment you upload and put the avatar on.
 
 ## Step 1: run the installer (easy path)
 
-1. Menu: **Tools > ProjectGabriel > Avatar Setup (Installer)**.
+1. Menu: **Tools > ProjectYelena > Avatar Setup (Installer)**.
 2. Drag your avatar from the Hierarchy into the **Avatar** field at the
    top of the window. (Or click **Find avatar in scene** to auto-detect
    the first `VRCAvatarDescriptor` in the open scene.) The window walks
@@ -71,8 +71,8 @@ and ray data the moment you upload and put the avatar on.
    - **Pose HUD**: the bottom-left coord strip
    - **Sensor Rig**: the 11 raycast empties grouped under HeadAnchor /
      HipsAnchor
-   - **Replace existing instances**: delete any old `GabrielPoseHUD` /
-     `GabrielSensorRig` children before installing the fresh ones.
+   - **Replace existing instances**: delete any old `YelenaPoseHUD` /
+     `YelenaSensorRig` children before installing the fresh ones.
      Leave checked unless you've hand-edited the existing copies.
 4. Click **Install on 'YourAvatar'**.
 
@@ -100,14 +100,14 @@ python side screen-captures it to know where you are.
 
 ### Build the prefab
 
-1. Menu: **Tools > ProjectGabriel > Build Pose HUD**
-2. The console prints `[GabrielPoseHudBuilder] built ...`.
+1. Menu: **Tools > ProjectYelena > Build Pose HUD**
+2. The console prints `[YelenaPoseHudBuilder] built ...`.
 3. Unity pings the new prefab in the Project window:
-   `Assets/ProjectGabriel/Generated/GabrielPoseHUD.prefab`
+   `Assets/ProjectYelena/Generated/YelenaPoseHUD.prefab`
 
 ### Drop it on your avatar
 
-1. Drag `GabrielPoseHUD.prefab` onto your **avatar root** in the scene
+1. Drag `YelenaPoseHUD.prefab` onto your **avatar root** in the scene
    hierarchy. **Not** under the `Head` bone, **not** under `Hips`,
    **not** under `Armature`. Just the root GameObject that has your
    `VRCAvatarDescriptor` on it.
@@ -131,12 +131,12 @@ python side screen-captures it to know where you are.
 If you want a radial-menu toggle to turn the strip on/off (and to keep
 it hidden from other players entirely), add a VRCFury Toggle:
 
-1. Select the `GabrielPoseHUD` GameObject on your avatar (the one you
+1. Select the `YelenaPoseHUD` GameObject on your avatar (the one you
    just dragged in).
 2. Add Component -> **VRC Fury** -> **Toggle**.
 3. Set:
    - **Menu Path:** `Toggles/WorldPOSShader` (or whatever you want)
-   - **In Local:** Turn On -> drag `GabrielPoseHUD` into the slot
+   - **In Local:** Turn On -> drag `YelenaPoseHUD` into the slot
    - **In Remote:** leave empty
    - **Options** (top-right): check **Default On**, **Saved Between
      Worlds**, **Separate Local State**
@@ -159,7 +159,7 @@ red/green/blue/black pixels. If you set up the toggle above, find it at
 
 If something in your HUD covers the bottom-left, you can shift the strip:
 
-1. Select the `GabrielPoseHUD.prefab` asset
+1. Select the `YelenaPoseHUD.prefab` asset
 2. Find the `MeshRenderer` -> material slot, click it
 3. The material exposes:
    - **Cell Size (px per logical pixel)**: default 4. Only bump this
@@ -197,15 +197,15 @@ builder adds 12. Plenty of headroom.
 
 ### Build the prefab
 
-1. Menu: **Tools > ProjectGabriel > Build Sensor Rig**
+1. Menu: **Tools > ProjectYelena > Build Sensor Rig**
 2. Console prints `Built sensor rig: ...`.
 3. Two assets get created:
-   - `Assets/ProjectGabriel/Generated/GabrielSensorRig.prefab`
-   - `Assets/ProjectGabriel/Generated/GabrielSensorParameters.asset`
+   - `Assets/ProjectYelena/Generated/YelenaSensorRig.prefab`
+   - `Assets/ProjectYelena/Generated/YelenaSensorParameters.asset`
 
 ### Wire it onto your avatar
 
-1. Drag `GabrielSensorRig.prefab` onto your **avatar root**. You'll see
+1. Drag `YelenaSensorRig.prefab` onto your **avatar root**. You'll see
    three children: `HeadAnchor`, `HipsAnchor` and `RootAnchor`, each
    containing `Ray_*` empties.
 
@@ -252,16 +252,16 @@ builder adds 12. Plenty of headroom.
 3. **Expression Parameters wiring (REQUIRED for OSC):** VRChat only
    publishes animator parameters over OSC if they're also registered
    in the avatar's `VRCExpressionParameters`. The builder generates
-   `GabrielSensorParameters.asset` for exactly this reason.
+   `YelenaSensorParameters.asset` for exactly this reason.
 
    - **With VRCFury (auto):** the builder also attaches a **VRC Fury
-     > Full Controller** component to the `GabrielSensorRig` root with
+     > Full Controller** component to the `YelenaSensorRig` root with
      the params asset already dropped into its Parameters list. Nothing
      for you to do, just check the component is there after dragging the
      prefab in. If VRCFury wasn't installed at build time you'll see a
      warning in the console and have to add it yourself.
    - **Without VRCFury:** open your avatar's `VRCAvatarDescriptor`,
-     scroll to Expressions, and either merge `GabrielSensorParameters`
+     scroll to Expressions, and either merge `YelenaSensorParameters`
      into your existing Parameters asset or use a tool like
      **VRLabs Avatars 3 Manager** to do it. Without this step the OSC
      side never sees the ray values.
@@ -341,9 +341,9 @@ If the rays are publishing but values look wrong:
 
 ## Troubleshooting
 
-**"Could not find shader 'ProjectGabriel/PoseExfilScreen'"**
+**"Could not find shader 'ProjectYelena/PoseExfilScreen'"**
 The shader file didn't get imported. Confirm
-`Assets/ProjectGabriel/shaders/PoseExfilScreen.shader` exists in the
+`Assets/ProjectYelena/shaders/PoseExfilScreen.shader` exists in the
 Project window, then re-run the menu command.
 
 **"VRCRaycast type not found"**

@@ -51,7 +51,7 @@ HELP = """
   /reset              forget the rollout, respawn at the origin
 
   /on  /off  /toggle  the FBT puppet itself
-  /loco               drive him through the world, or walk in place
+  /loco               drive her through the world, or walk in place
   /status             what everything is currently doing
   /help  /quit
 """
@@ -181,7 +181,7 @@ async def handle(ws, osc, st, line):
         st.loco = not st.loco
         if not st.loco:
             zero_inputs(osc)
-        print(f"  -> locomotion {'ON (he walks around)' if st.loco else 'OFF (walks in place)'}")
+        print(f"  -> locomotion {'ON (she walks around)' if st.loco else 'OFF (walks in place)'}")
     elif cmd in ("s", "status"):
         age = time.monotonic() - st.last_frame_at if st.last_frame_at else -1
         stale = "  STREAM STALLED" if age > 1.0 else ""

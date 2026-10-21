@@ -1,5 +1,5 @@
 """
-VRChat Avatar Emotion System for ProjectGabriel
+VRChat Avatar Emotion System for ProjectYelena
 
 Controls avatar animations via OSC through explicit function calls.
 Automatically alternates talking animations when AI speaks.

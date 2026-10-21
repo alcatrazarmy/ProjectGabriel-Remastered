@@ -1,4 +1,4 @@
-# ARDY Core-27 skeleton -> Gabriel FBT muscle params.
+# ARDY Core-27 skeleton -> Yelena FBT muscle params.
 #
 # ARDY world (probed 2026-07, ardy_probe_stand.npz): y-up meters, floor at
 # y=0, facing +z at heading angle 0, +x is the models LEFT (right-handed).

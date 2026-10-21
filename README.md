@@ -1,6 +1,6 @@
 <p align="center">
   <picture>
-    <img alt="Project Gabriel" src="https://hoppou.ai/images/projects/ProjectCardHoppouAI-GabrielRemaster.webp" width="600">
+    <img alt="Project Yelena" src="https://hoppou.ai/images/projects/ProjectCardHoppouAI-GabrielRemaster.webp" width="600">
   </picture>
 </p>
 
@@ -11,19 +11,19 @@
   <a href="https://discord.gg/ZNWTYTk4Vq"><img alt="Discord" src="https://img.shields.io/badge/discord-join-6366f1?style=flat-square&logo=discord&logoColor=white"></a>
 </p>
 
-# Project Gabriel
+# Project Yelena
 
-A real-time AI companion built for VRChat. Gabriel walks around, talks to people, remembers who they are, and has his own personality. He listens through Gemini Live's native audio streaming, sees through computer vision, and controls his avatar through OSC. Built by [Hoppou AI](https://hoppou.ai).
+A real-time AI companion built for VRChat. Yelena walks around, talks to people, remembers who they are, and has her own personality. She listens through Gemini Live's native audio streaming, sees through computer vision, and controls her avatar through OSC. Built by [Hoppou AI](https://hoppou.ai).
 
-**VRChat is completely optional.** Gabriel runs just fine without it: you can talk to him through Discord, the WebUI, or any other interface. He was designed around VRChat and that's where he shines brightest, but nothing locks you into it. The Discord bot, social server, and local backend all work standalone.
+**VRChat is completely optional.** Yelena runs just fine without it: you can talk to her through Discord, the WebUI, or any other interface. She was designed around VRChat and that's where she shines brightest, but nothing locks you into it. The Discord bot, social server, and local backend all work standalone.
 
-Most of the well known VRChat AI companions out there are either closed source, locked behind a paywall, or both. Gabriel breaks that pattern. He is free, open source, and designed so anyone with a Gemini API key and a Windows machine can have their own AI companion without paying a cent or signing up for someone else's service. That's the whole point.
+Most of the well known VRChat AI companions out there are either closed source, locked behind a paywall, or both. Yelena breaks that pattern. She is free, open source, and designed so anyone with a Gemini API key and a Windows machine can have their own AI companion without paying a cent or signing up for someone else's service. That's the whole point.
 
 ---
 
 ## Generated full body motion
 
-Ask him to dance, sit down, or do a backflip and a text-to-motion diffusion model generates it live, streamed onto his avatar at 20fps. No mocap, no canned animations, no SteamVR. Currently on the `motion-server` branch.
+Ask her to dance, sit down, or do a backflip and a text-to-motion diffusion model generates it live, streamed onto her avatar at 20fps. No mocap, no canned animations, no SteamVR. Currently on the `motion-server` branch.
 
 https://github.com/user-attachments/assets/ea35eeeb-7c44-4c7f-af70-9b1d3386fbef
 
@@ -34,45 +34,45 @@ https://github.com/user-attachments/assets/ea35eeeb-7c44-4c7f-af70-9b1d3386fbef
 <table>
   <tr>
     <td>🎙️</td>
-    <td><strong>Gemini Live audio</strong><br>Real-time voice conversations powered by Gemini. Gabriel talks naturally with one of eight built-in voices, no robotic TTS middleware needed.</td>
+    <td><strong>Gemini Live audio</strong><br>Real-time voice conversations powered by Gemini. Yelena talks naturally with one of eight built-in voices, no robotic TTS middleware needed.</td>
     <td>👁️</td>
     <td><strong>Computer vision</strong><br>Sees the game world through screen capture. Finds people in the room, and can follow them around.</td>
   </tr>
   <tr>
     <td>🎮</td>
-    <td><strong>Full OSC control</strong><br>Walks, turns, jumps, crouches, grabs objects, and types into the chatbox. Everything you can do with a keyboard and mouse, Gabriel does through VRChat's OSC interface.</td>
+    <td><strong>Full OSC control</strong><br>Walks, turns, jumps, crouches, grabs objects, and types into the chatbox. Everything you can do with a keyboard and mouse, Yelena does through VRChat's OSC interface.</td>
     <td>🧠</td>
     <td><strong>Persistent memory</strong><br>Remembers people, places, and conversations across sessions. Stores long term facts, short term context, and quick notes with smart semantic search.</td>
   </tr>
   <tr>
     <td>🎭</td>
-    <td><strong>Switchable personalities</strong><br>Define different personas for Gabriel and let him switch between them on the fly. He can change his whole vibe mid-conversation based on context.</td>
+    <td><strong>Switchable personalities</strong><br>Define different personas for Yelena and let her switch between them on the fly. She can change her whole vibe mid-conversation based on context.</td>
     <td>🧭</td>
-    <td><strong>Spatial navigation</strong><br>Maps out VRChat worlds and finds his way around. Saves waypoints, explores on his own, and remembers the layout of every world he visits.</td>
+    <td><strong>Spatial navigation</strong><br>Maps out VRChat worlds and finds her way around. Saves waypoints, explores on her own, and remembers the layout of every world she visits.</td>
   </tr>
   <tr>
     <td>🌐</td>
     <td><strong>WebUI dashboard</strong><br>A clean browser dashboard with live console output, memory management, vision controls, mapping view, waypoints, and OBS overlay support.</td>
     <td>🔌</td>
-    <td><strong>Plugin system</strong><br>Extend Gabriel with drop-in plugins. Add new tools, custom voices, chatbox widgets, or hook into events. Official Plugins: https://github.com/HoppouAI/ProjectGabriel-Plugins</td>
+    <td><strong>Plugin system</strong><br>Extend Yelena with drop-in plugins. Add new tools, custom voices, chatbox widgets, or hook into events. Official Plugins: https://github.com/HoppouAI/ProjectGabriel-Plugins</td>
   </tr>
   <tr>
     <td>💬</td>
-    <td><strong>Discord bot</strong><br>Gabriel hangs out in your Discord server too, with his own Gemini session. Reads messages, replies naturally, and keeps track of each channel separately.</td>
+    <td><strong>Discord bot</strong><br>Yelena hangs out in your Discord server too, with her own Gemini session. Reads messages, replies naturally, and keeps track of each channel separately.</td>
     <td>🔗</td>
     <td><strong>VRChat API</strong><br>Search and switch avatars, look up friends, find worlds, update your status, send friend requests, and invite people to your instance.</td>
   </tr>
   <tr>
     <td>🔑</td>
-    <td><strong>API key rotation</strong><br>Add backup Gemini API keys and Gabriel cycles through them automatically when he hits a rate limit. No downtime, no manual intervention.</td>
+    <td><strong>API key rotation</strong><br>Add backup Gemini API keys and Yelena cycles through them automatically when she hits a rate limit. No downtime, no manual intervention.</td>
     <td>🏠</td>
     <td><strong>Local backend</strong><br>Optionally run everything on your own machine with LM Studio, parakeet.cpp speech recognition, and any TTS provider. Nothing leaves your computer.</td>
   </tr>
   <tr>
     <td>🤸</td>
-    <td><strong>Generated motion</strong><br>A text-to-motion diffusion model drives his whole body in real time. Dancing, sitting, lying down, backflips, and walking that actually moves him through the world. On the <code>motion-server</code> branch.</td>
+    <td><strong>Generated motion</strong><br>A text-to-motion diffusion model drives her whole body in real time. Dancing, sitting, lying down, backflips, and walking that actually moves her through the world. On the <code>motion-server</code> branch.</td>
     <td>📡</td>
-    <td><strong>Raycast sensor rig</strong><br>Avatar mounted raycasts give him engine-truth distances for walls, ledges, ceilings and floors, so he navigates worlds without walking into things.</td>
+    <td><strong>Raycast sensor rig</strong><br>Avatar mounted raycasts give her engine-truth distances for walls, ledges, ceilings and floors, so she navigates worlds without walking into things.</td>
   </tr>
 </table>
 
@@ -82,7 +82,7 @@ https://github.com/user-attachments/assets/ea35eeeb-7c44-4c7f-af70-9b1d3386fbef
 
 1. Download the **latest release** from the [Releases page](https://github.com/HoppouAI/ProjectGabriel-Remastered/releases) and extract it.
 2. Open the folder and run `setup.bat`. It downloads Python 3.12, installs everything, and asks about GPU support.
-3. When setup finishes, run `run.bat` to start Gabriel.
+3. When setup finishes, run `run.bat` to start Yelena.
 
 If Windows is hiding file extensions, the files will just say `setup` and `run` without the `.bat`. Same thing.
 
@@ -101,7 +101,7 @@ The WebUI is at **http://localhost:8766** once running.
 
 ## Audio Routing
 
-After starting Gabriel, set these in the Windows Volume Mixer (right-click the speaker icon):
+After starting Yelena, set these in the Windows Volume Mixer (right-click the speaker icon):
 
 | Application | Output | Input |
 |:---|:---|:---|
@@ -127,7 +127,7 @@ Everything lives in `config.yml`. Key sections:
 | `gemini` &rarr; `voice` | Prebuilt voice: Puck, Charon, Kore, Fenrir, Aoede, Leda, Orus, Zephyr |
 | `gemini` &rarr; `vad` &rarr; `mode` | Voice Activity Detection: `auto` (server-side) or `silero` (local) |
 | `gemini` &rarr; `thinking` | How much the model reasons before it answers |
-| `gemini` &rarr; `tool_calls` &rarr; `stop_audio_output` | Whether Gabriel gets cut off mid sentence when the model stops to wait for a tool. Off by default, the mic is muted during the wait either way |
+| `gemini` &rarr; `tool_calls` &rarr; `stop_audio_output` | Whether Yelena gets cut off mid sentence when the model stops to wait for a tool. Off by default, the mic is muted during the wait either way |
 | `vrchat` &rarr; `osc_ip`, `osc_send_port`, `osc_receive_port` | OSC IP and ports |
 | `vrchat_api` | VRChat account credentials for avatar switching, friends, etc |
 | `yolo` &rarr; `enabled` | Toggle person/face tracking |
@@ -153,7 +153,7 @@ Older and newer models are all supported. Anything not recognised falls back to 
 
 ### Tools (`config/tools.yml`)
 
-`config/tools.yml` controls what Gabriel can do. It is generated on first run and updated automatically as tools are added, so you never need to write it from scratch.
+`config/tools.yml` controls what Yelena can do. It is generated on first run and updated automatically as tools are added, so you never need to write it from scratch.
 
 Each tool can be a plain on/off switch:
 
@@ -201,21 +201,21 @@ Plugins add their tools under `plugin_tools`, grouped by plugin name. Whether a 
 <details>
 <summary><strong>"I can't log into VRChat" / "VRChat API calls fail with 401"</strong></summary>
 
-Delete `data/vrchat_cookies.json` and restart Gabriel. The auth cookies can get stale or corrupted, and deleting them forces a fresh login on next attempt. If it still fails, double-check the `username` and `password` fields under the `vrchat_api` section in `config.yml`.
+Delete `data/vrchat_cookies.json` and restart Yelena. The auth cookies can get stale or corrupted, and deleting them forces a fresh login on next attempt. If it still fails, double-check the `username` and `password` fields under the `vrchat_api` section in `config.yml`.
 
 </details>
 
 <details>
 <summary><strong>"Is VRChat required?"</strong></summary>
 
-Not at all. Gabriel runs just fine as a standalone voice AI. You can talk to him through Discord, the WebUI at `http://localhost:8766`, or any other interface. The Discord bot, social server, and local backend all work without VRChat even installed. He was designed with VRChat in mind and that's where all the OSC, vision, and navigation features live, but nothing forces you to use it.
+Not at all. Yelena runs just fine as a standalone voice AI. You can talk to her through Discord, the WebUI at `http://localhost:8766`, or any other interface. The Discord bot, social server, and local backend all work without VRChat even installed. She was designed with VRChat in mind and that's where all the OSC, vision, and navigation features live, but nothing forces you to use it.
 
 </details>
 
 <details>
-<summary><strong>"Does the AI have to be named Gabriel?"</strong></summary>
+<summary><strong>"Does the AI have to be named Yelena?"</strong></summary>
 
-No. Gabriel is just the project name and the default app name. Change it in `config.yml` under `app_name` and update your prompt files in `config/prompts/`. You can give him any name, personality, or backstory you want. Everything is configurable.
+No. Yelena is just the project name and the default app name. Change it in `config.yml` under `app_name` and update your prompt files in `config/prompts/`. You can give her any name, personality, or backstory you want. Everything is configurable.
 
 </details>
 
@@ -227,9 +227,9 @@ Set the `voice` field under `gemini` in `config.yml` to any of the eight built-i
 </details>
 
 <details>
-<summary><strong>"Does the AI have to be male?"</strong></summary>
+<summary><strong>"Does the AI have to be female?"</strong></summary>
 
-Not at all. Gabriel is fully customizable. Pick a female voice like Aoede or Zephyr, write a prompt that describes a female persona, and that's who your AI is. The project name is just a name. Everything from voice to personality to gender is defined by your config and prompt files.
+Not at all. Yelena is fully customizable. Pick a voice, write a prompt that describes your preferred persona, and that's who your AI is. The project name is just a name. Everything from voice to personality to gender is defined by your config and prompt files.
 
 </details>
 
@@ -245,7 +245,7 @@ If you're on a 2.5 model, make sure `context_window_compression` is set to `enab
 <details>
 <summary><strong>"I'm getting 429 rate limit errors"</strong></summary>
 
-Add backup API keys under `gemini` &rarr; `backup_keys` in `config.yml`. Gabriel rotates keys automatically when he hits a quota limit. Each free API key has its own quota, so having a few on hand keeps things running.
+Add backup API keys under `gemini` &rarr; `backup_keys` in `config.yml`. Yelena rotates keys automatically when she hits a quota limit. Each free API key has its own quota, so having a few on hand keeps things running.
 
 </details>
 
@@ -296,7 +296,7 @@ To swap manually instead:
 <details>
 <summary><strong>"The chatbox shows garbled text or cuts off"</strong></summary>
 
-VRChat's chatbox has a 144 character hard limit. Gabriel auto-paginates with `(1/N)` prefixes, but if you're seeing issues, try adjusting `chatbox_page_delay` under `vrchat` in `config.yml` (default is 3 seconds).
+VRChat's chatbox has a 144 character hard limit. Yelena auto-paginates with `(1/N)` prefixes, but if you're seeing issues, try adjusting `chatbox_page_delay` under `vrchat` in `config.yml` (default is 3 seconds).
 
 </details>
 
@@ -310,14 +310,14 @@ The project targets Windows first. Some things will work on Linux (Python code, 
 <details>
 <summary><strong>"Where do I put my music/SFX files?"</strong></summary>
 
-Drop them in `sfx/music/`. Gabriel can play them via the soundboard & play music tool(s).
+Drop them in `sfx/music/`. Yelena can play them via the soundboard & play music tool(s).
 
 </details>
 
 <details>
 <summary><strong>"How do I add a custom TTS voice?"</strong></summary>
 
-Gabriel supports several TTS providers out of the box: Hoppou AI cloud, Google Chirp 3 HD, and TikTok TTS.
+Yelena supports several TTS providers out of the box: Hoppou AI cloud, Google Chirp 3 HD, and TikTok TTS.
 
 </details>
 
@@ -332,7 +332,7 @@ Don't panic. Compare your `config.yml` against `config.yml.example`. The example
 
 ## Plugins
 
-Gabriel has a drop-in plugin system. Create a folder under `plugins/<name>/` with a `plugin.yml` manifest and an `__init__.py` that subclasses `Plugin`. Plugins can:
+Yelena has a drop-in plugin system. Create a folder under `plugins/<name>/` with a `plugin.yml` manifest and an `__init__.py` that subclasses `Plugin`. Plugins can:
 
 - Register Gemini function-calling tools
 - Register custom TTS providers, and custom STT / ASR providers for the local backend

@@ -143,7 +143,7 @@ server.listen(config.port, config.host, () => {
   const bp = basePath === "/" ? "" : basePath;
   console.log("");
   console.log(bar("╔", "╗"));
-  console.log(line("   ProjectGabriel Social Server v1.0.0"));
+  console.log(line("   ProjectYelena Social Server v1.0.0"));
   console.log(bar("╠", "╣"));
   console.log(line(`  HTTP:   http://${config.host}:${config.port}${bp}`));
   console.log(line(`  WS:     ws://${config.host}:${config.port}${bp}/ws`));

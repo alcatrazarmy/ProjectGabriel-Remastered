@@ -1,15 +1,15 @@
 # Unity Editor Scripts
 
-Three editor-only entry points under **Tools > ProjectGabriel** in the
+Three editor-only entry points under **Tools > ProjectYelena** in the
 menu bar:
 
 | Menu item                       | Script                              | What it does                                                          |
 |---------------------------------|-------------------------------------|-----------------------------------------------------------------------|
-| Avatar Setup (Installer)        | `GabrielAvatarSetupWindow.cs`       | EditorWindow. Drag avatar, tick what to install, click button.        |
-| Build Pose HUD                  | `GabrielPoseHudBuilder.cs`          | Builds just the pose strip prefab (manual workflow).                  |
-| Build Sensor Rig                | `GabrielSensorRigBuilder.cs`        | Builds just the VRCRaycast sensor rig prefab (manual workflow).       |
+| Avatar Setup (Installer)        | `YelenaAvatarSetupWindow.cs`       | EditorWindow. Drag avatar, tick what to install, click button.        |
+| Build Pose HUD                  | `YelenaPoseHudBuilder.cs`          | Builds just the pose strip prefab (manual workflow).                  |
+| Build Sensor Rig                | `YelenaSensorRigBuilder.cs`        | Builds just the VRCRaycast sensor rig prefab (manual workflow).       |
 
-All prefabs land in `Assets/ProjectGabriel/Generated/`.
+All prefabs land in `Assets/ProjectYelena/Generated/`.
 
 For the full step-by-step avatar setup (which is what you actually want
 to read), see `unity_assets/AVATAR_SETUP.md`. The notes below are just
@@ -30,8 +30,8 @@ EditorWindow that ties the two builders together. Workflow:
    instances on the avatar.
 4. Click **Install on '<avatar>'**.
 
-The window calls `GabrielPoseHudBuilder.BuildPrefab()` and
-`GabrielSensorRigBuilder.BuildPrefab()` to refresh the prefabs on disk,
+The window calls `YelenaPoseHudBuilder.BuildPrefab()` and
+`YelenaSensorRigBuilder.BuildPrefab()` to refresh the prefabs on disk,
 then `PrefabUtility.InstantiatePrefab` to parent fresh instances onto
 the avatar at identity transforms. Everything is wrapped in a single
 Undo group so Ctrl+Z reverts the whole install.
@@ -40,8 +40,8 @@ Undo group so Ctrl+Z reverts the whole install.
 
 ## Build Pose HUD
 
-Creates `GabrielPoseHUD.prefab` containing a single quad with the
-`ProjectGabriel/PoseExfilScreen` material.
+Creates `YelenaPoseHUD.prefab` containing a single quad with the
+`ProjectYelena/PoseExfilScreen` material.
 
 Key details:
 - Quad mesh is `+-0.5` in object space, but its `Bounds` are forced to
@@ -58,11 +58,11 @@ Key details:
 ## Build Sensor Rig
 
 Creates two assets:
-- `GabrielSensorRig.prefab` -- root with `HeadAnchor` and `HipsAnchor`
+- `YelenaSensorRig.prefab` -- root with `HeadAnchor` and `HipsAnchor`
   children, each containing pre-rotated `Ray_*` empties. Each ray empty
   has a `VRCRaycast` component plus a `Result` child transform (VRChat
   silently refuses to publish raycast data without a `Result`).
-- `GabrielSensorParameters.asset` -- a `VRCExpressionParameters` with
+- `YelenaSensorParameters.asset` -- a `VRCExpressionParameters` with
   every `<Ray>_Hit` / `_Distance` / `_Ratio` declared as unsynced.
 
 The script uses **reflection** to talk to `VRCRaycast` and

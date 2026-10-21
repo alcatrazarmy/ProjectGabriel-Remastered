@@ -222,7 +222,7 @@ class App:
         self.dirty = False
 
     def _header(self, cols: int) -> str:
-        title = "  ProjectGabriel Plugin Installer"
+        title = "  ProjectYelena Plugin Installer"
         right = f"plugins/  {PLUGINS_DIR}  "
         bar = "\u2550" * cols
         head = title + " " * max(0, cols - len(title) - len(right)) + right
@@ -464,7 +464,7 @@ def _do_install(app: App) -> None:
             print(f"  {C.RED}failed: {res.error or 'see above'}{C.RST}")
         print()
 
-    summary = f"installed {ok_count}/{len(targets)} plugin(s). Restart Gabriel to load them."
+    summary = f"installed {ok_count}/{len(targets)} plugin(s). Restart Yelena to load them."
     print(summary)
     if ok_count < len(targets):
         print(f"{C.YELLOW}some installs failed, check logs above.{C.RST}")
@@ -568,7 +568,7 @@ def run() -> int:
     app = App()
 
     # banner before alt screen
-    print(f"{C.BOLD}{C.CYAN}ProjectGabriel Plugin Installer{C.RST}")
+    print(f"{C.BOLD}{C.CYAN}ProjectYelena Plugin Installer{C.RST}")
     print(f"{C.DIM}fetching plugin list from {DEFAULT_REPO}@{DEFAULT_BRANCH}...{C.RST}")
     app.refresh()
 

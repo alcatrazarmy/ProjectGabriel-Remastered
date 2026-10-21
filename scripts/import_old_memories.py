@@ -1,4 +1,4 @@
-"""One-shot importer for the OLD ProjectGabriel memory.db schema.
+"""One-shot importer for the OLD ProjectYelena memory.db schema.
 
 Old schema: memory(id, key, value, memory_type, tags, created_at, last_accessed, access_count)
 New schema: memories(key, content, category, memory_type, tags, content_hash, created_at, ...)

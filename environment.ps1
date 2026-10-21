@@ -1,5 +1,5 @@
-# Dot-source this file before any approved Gabriel commands.
-# This file sets process-local paths; it does not start Gabriel or any sensors.
+# Dot-source this file before any approved Yelena commands.
+# This file sets process-local paths; it does not start Yelena or any sensors.
 $env:UV_CACHE_DIR = 'D:\Caches\uv'
 $env:UV_PROJECT_ENVIRONMENT = 'A:\Tools\gabriel-venv'
 $env:UV_PYTHON_INSTALL_DIR = 'A:\Tools\Python'

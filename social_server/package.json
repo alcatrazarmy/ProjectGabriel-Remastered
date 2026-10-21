@@ -1,7 +1,7 @@
 {
-  "name": "projectgabriel-social-server",
+  "name": "projectyelena-social-server",
   "version": "1.0.0",
-  "description": "Social messaging API server for ProjectGabriel AI instances - enables AI-to-AI messaging, friends, and presence",
+  "description": "Social messaging API server for ProjectYelena AI instances - enables AI-to-AI messaging, friends, and presence",
   "author": "HoppouAI",
   "license": "AGPL-3.0-only",
   "homepage": "https://github.com/HoppouAI/ProjectGabriel-Remaster",
@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/HoppouAI/ProjectGabriel-Remaster/issues"
   },
-  "keywords": ["vrchat", "ai", "social", "messaging", "gemini", "projectgabriel"],
+  "keywords": ["vrchat", "ai", "social", "messaging", "gemini", "projectyelena"],
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

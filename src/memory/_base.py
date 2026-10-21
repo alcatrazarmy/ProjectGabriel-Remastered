@@ -38,12 +38,12 @@ class MemorySystemBase:
         self.backend = self.config.get("backend", "sqlite").lower()
 
         # MongoDB settings
-        self.mongo_uri = os.environ.get("GABRIEL_MONGO_URI", self.config.get("mongo_uri", ""))
-        self.mongo_db = os.environ.get("GABRIEL_MONGO_DB", self.config.get("mongo_db", "gabriel"))
-        self.mongo_collection_name = os.environ.get("GABRIEL_MONGO_COLLECTION", self.config.get("mongo_collection", "memories"))
+        self.mongo_uri = os.environ.get("YELENA_MONGO_URI", self.config.get("mongo_uri", ""))
+        self.mongo_db = os.environ.get("YELENA_MONGO_DB", self.config.get("mongo_db", "yelena"))
+        self.mongo_collection_name = os.environ.get("YELENA_MONGO_COLLECTION", self.config.get("mongo_collection", "memories"))
 
         # SQLite settings
-        self.sqlite_path = self.config.get("sqlite_path", "data/gabriel_memories.sqlite")
+        self.sqlite_path = self.config.get("sqlite_path", "data/yelena_memories.sqlite")
 
         # TTL settings
         self.quick_note_ttl_hours = float(self.config.get("quick_note_ttl_hours", 6))
@@ -87,7 +87,7 @@ class MemorySystemBase:
         self._local_embedding_model = self.config.get("local_embedding_model", "text-embedding-embeddinggemma-300m-qat")
         self._chroma_client = None
         self._chroma_collection = None
-        self._chroma_path = self.config.get("chroma_dir", "data/gabriel_chroma_db")
+        self._chroma_path = self.config.get("chroma_dir", "data/yelena_chroma_db")
         self._httpx_client = None
 
         self._connect()

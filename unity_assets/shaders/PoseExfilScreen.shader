@@ -1,4 +1,4 @@
-Shader "ProjectGabriel/PoseExfilScreen"
+Shader "ProjectYelena/PoseExfilScreen"
 {
     // Screen-space pose exfil. Uses the standard fullscreen quad trick:
     // stretch any mesh to NDC corners in the vert shader, then in the frag

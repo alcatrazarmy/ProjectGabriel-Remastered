@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 
-namespace ProjectGabriel.Editor
+namespace ProjectYelena.Editor
 {
     /// <summary>
     /// Rebuilds the complete DesktopFBT puppet rig from nothing: every clip,
@@ -17,8 +17,8 @@ namespace ProjectGabriel.Editor
     /// This is the reference implementation of the rig the motion server
     /// streams to (motion_server/retarget.py mirrors these exact conventions).
     ///
-    /// Menu: Tools > ProjectGabriel > Build Desktop FBT Rig   (avatar selected)
-    ///        Tools > ProjectGabriel > Export muscle_ranges.json
+    /// Menu: Tools > ProjectYelena > Build Desktop FBT Rig   (avatar selected)
+    ///        Tools > ProjectYelena > Export muscle_ranges.json
     ///
     /// HOW IT WORKS (read this before touching anything):
     ///   - 29 synced float params (FBT/*) + 1 bool (FBT/Enable) = 233/256 bits.
@@ -41,7 +41,7 @@ namespace ProjectGabriel.Editor
     ///     playable layer weight -> 1. Locomotion stays ENABLED so OSC move
     ///     inputs still drive the capsule while the puppet animates in place.
     /// </summary>
-    public static class GabrielFBTRigBuilder
+    public static class YelenaFBTRigBuilder
     {
         private const string OUT_DIR = "Assets/HoppouAI/DesktopFBT";
         private const string CLIP_DIR = OUT_DIR + "/Clips";
@@ -57,8 +57,8 @@ namespace ProjectGabriel.Editor
         // metres (retarget divides by hipsy_down_m), so the rig converts them
         // to THIS avatar's build and then to RootT units, which Unity measures
         // in metres/humanScale. doing that by hand with a fixed fudge put the
-        // hips 1.069m down for a requested 1.000, ~9% deep, which is why he
-        // sat with his ankles and backside through the floor.
+        // hips 1.069m down for a requested 1.000, ~9% deep, which is why she
+        // sat with her ankles and backside through the floor.
         private const float HIPSY_DOWN_SMPL_M = 1.00f;
         private const float HIPSY_UP_SMPL_M = 0.80f;
         // retarget_core.STAND_HIPS_Y, the ardy skeleton's standing pelvis height
@@ -117,7 +117,7 @@ namespace ProjectGabriel.Editor
             ("RFootUD", new[] { ("Right Foot Up-Down", 1f) }),
         };
 
-        [MenuItem("Tools/ProjectGabriel/Build Desktop FBT Rig")]
+        [MenuItem("Tools/ProjectYelena/Build Desktop FBT Rig")]
         public static void Build()
         {
             var avatar = Selection.activeGameObject;
@@ -306,7 +306,7 @@ namespace ProjectGabriel.Editor
         /// on in the scene because android ignores animated VRC constraint
         /// properties, so it can't share the PC avatar's weight-0 setup.
         /// </summary>
-        [MenuItem("Tools/ProjectGabriel/Wire Quest Avatar To Rig")]
+        [MenuItem("Tools/ProjectYelena/Wire Quest Avatar To Rig")]
         public static void WireQuestAvatar()
         {
             var avatar = Selection.activeGameObject;
@@ -348,7 +348,7 @@ namespace ProjectGabriel.Editor
             Debug.Log("[FBT] quest avatar '" + avatar.name + "' wired to the rig, hips constraint pinned on. Reupload it.");
         }
 
-        [MenuItem("Tools/ProjectGabriel/Export muscle_ranges.json")]
+        [MenuItem("Tools/ProjectYelena/Export muscle_ranges.json")]
         public static void ExportRanges()
         {
             var Inv = System.Globalization.CultureInfo.InvariantCulture;

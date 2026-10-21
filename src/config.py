@@ -2,6 +2,7 @@ import yaml
 import logging
 from datetime import datetime
 from pathlib import Path
+from src.service_config import environment_value
 
 from src.model_caps import (
     TOOL_SCHEDULING,
@@ -302,7 +303,7 @@ class Config:
 
     @property
     def app_name(self):
-        return self.get("app_name", default="Gabriel")
+        return self.get("app_name", default="Yelena")
 
     @property
     def backend(self):
@@ -319,7 +320,9 @@ class Config:
     # local backend (LM Studio + parakeet.cpp) settings
     @property
     def local_llm_base_url(self):
-        return self.get("local", "llm", "base_url", default="http://localhost:1234/v1").rstrip("/")
+        env_name = self.get("local", "llm", "base_url_env", default="")
+        override = environment_value(env_name) if env_name else ""
+        return (override or self.get("local", "llm", "base_url", default="http://localhost:1234/v1")).rstrip("/")
 
     @property
     def local_llm_model(self):
@@ -328,6 +331,12 @@ class Config:
 
     @property
     def local_llm_api_key(self):
+        env_name = self.get("local", "llm", "api_key_env", default="")
+        if env_name:
+            value = environment_value(env_name)
+            if not value:
+                raise ValueError(f"Set {env_name} before connecting to the local LLM server")
+            return value
         # LM Studio ignores this but the openai-compat path requires a value
         return self.get("local", "llm", "api_key", default="lm-studio")
 
@@ -540,7 +549,7 @@ class Config:
         except Exception as e:
             logger.warning(f"plugin prompt contributors failed: {e}")
 
-        # generated body: how to express himself with it, and how it relates
+        # generated body: how to express herself with it, and how it relates
         # to the older canned animation tool when both are on
         if self.motion_enabled:
             try:
@@ -610,7 +619,7 @@ class Config:
 
     @property
     def stop_audio_on_tool_call(self):
-        # the mic is muted for blocking calls regardless, this only decides if his speech gets cut too
+        # the mic is muted for blocking calls regardless, this only decides if her speech gets cut too
         return bool(self.get("gemini", "tool_calls", "stop_audio_output", default=False))
 
     @property

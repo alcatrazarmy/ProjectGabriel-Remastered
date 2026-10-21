@@ -1,5 +1,5 @@
 /*
- * Gabriel Voice Control - Native (Node.js) Module
+ * Yelena Voice Control - Native (Node.js) Module
  * Runs in Electron's main process via Vencord's native IPC bridge.
  * AI connects via WS, native queues commands, renderer polls and executes.
  * Copyright (c) 2025 HoppouAI
@@ -170,7 +170,7 @@ export function startServer(_event: any, port: number) {
 
             const client: WSClient = { socket, state: OPEN };
             clients.add(client);
-            console.log("[GabrielVoice] AI client connected");
+            console.log("[YelenaVoice] AI client connected");
 
             let remainder = Buffer.alloc(0);
             if (head && head.length > 0) remainder = Buffer.from(head);
@@ -182,7 +182,7 @@ export function startServer(_event: any, port: number) {
                         client.state = CLOSED;
                         socket.end();
                         removeClient(client);
-                        console.log("[GabrielVoice] AI client disconnected");
+                        console.log("[YelenaVoice] AI client disconnected");
                         return;
                     }
                     if (opcode === 0x09) {
@@ -218,17 +218,17 @@ export function startServer(_event: any, port: number) {
             });
 
             socket.on("error", (err: any) => {
-                console.error("[GabrielVoice] Socket error:", err.message);
+                console.error("[YelenaVoice] Socket error:", err.message);
                 removeClient(client);
             });
         });
 
         httpServer.on("error", (err: any) => {
-            console.error("[GabrielVoice] Server error:", err.message);
+            console.error("[YelenaVoice] Server error:", err.message);
         });
 
         httpServer.listen(port, "127.0.0.1", () => {
-            console.log(`[GabrielVoice] WS server on 127.0.0.1:${port}`);
+            console.log(`[YelenaVoice] WS server on 127.0.0.1:${port}`);
         });
 
         return { success: true, port };
@@ -244,7 +244,7 @@ export function stopServer(_event: any) {
         pendingCommands.clear();
         httpServer.close();
         httpServer = null;
-        console.log("[GabrielVoice] Server stopped");
+        console.log("[YelenaVoice] Server stopped");
     }
     return { success: true };
 }

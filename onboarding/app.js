@@ -487,7 +487,7 @@ function collectValues() {
   }
 
   const result = {
-    app_name: $('#app_name').value.trim() || 'Gabriel',
+    app_name: $('#app_name').value.trim() || 'Yelena',
     gemini: {
       api_key: $('#gemini_api_key').value.trim(),
       backup_keys: getBackupKeys(),
@@ -515,7 +515,7 @@ function collectValues() {
       },
       idle_chatbox: {
         enabled: $('#idle_chatbox_enabled').checked,
-        banner: $('#idle_banner').value.trim() || 'Gabriel AI',
+        banner: $('#idle_banner').value.trim() || 'Yelena AI',
         lines: [
           $('#idle_line1').value.trim(),
           $('#idle_line2').value.trim(),

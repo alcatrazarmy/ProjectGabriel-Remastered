@@ -1,7 +1,7 @@
-"""Generated motion as Gabriel's expression layer.
+"""Generated motion as Yelena's expression layer.
 
 Does what the canned emotion animations do, except the body is driven by the
-motion server: gesture motions while he talks, a fidget once he's been quiet
+motion server: gesture motions while she talks, a fidget once she's been quiet
 a while, and the puppet handed back to VRChat when nothing is going on.
 
 Only engages on the ARDY backend. DART's prompt styles are too terse to get
@@ -183,7 +183,7 @@ class MotionExpression:
                 want = self._want()
                 if self._client.backend is None:
                     # nothing to drive until the server says hello, and there
-                    # is no point dialing it up before he has something to do
+                    # is no point dialing it up before she has something to do
                     if want in (None, "stand") or time.monotonic() < self._next_connect:
                         continue
                     self._next_connect = time.monotonic() + CONNECT_RETRY_S
@@ -199,7 +199,7 @@ class MotionExpression:
                     self._state = None
                     continue
                 if self._client.owned_by_model:
-                    # he asked for a motion himself, that wins until he stops it
+                    # she asked for a motion herself, that wins until she stops it
                     self._state = None
                     continue
                 await self._apply(want)
@@ -214,7 +214,7 @@ class MotionExpression:
 
 
 def build_instruction(config):
-    """Prompt block telling him the generated body is how he expresses himself.
+    """Prompt block telling her the generated body is how she expresses herself.
     Returns '' when motion is off, so the prompt stays clean."""
     if not config.motion_enabled:
         return ""

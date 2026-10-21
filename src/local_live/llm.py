@@ -116,6 +116,17 @@ class LMStudioClient:
                     "Content-Type": "application/json",
                 },
             )
+            if self._model == "auto":
+                try:
+                    response = await self._client.get("/models")
+                    response.raise_for_status()
+                    models = [item["id"] for item in response.json().get("data", []) if item.get("id")]
+                    if len(models) != 1:
+                        raise ValueError("Set local.llm.model explicitly when the server lists zero or multiple models")
+                    self._model = models[0]
+                except BaseException:
+                    await self.stop()
+                    raise
 
     async def stop(self):
         if self._client:

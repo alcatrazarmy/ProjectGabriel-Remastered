@@ -1,6 +1,6 @@
 # config/tools.yml: per-tool toggles, call type and scheduling
 #
-# This file is auto-managed. On startup ProjectGabriel walks the live
+# This file is auto-managed. On startup ProjectYelena walks the live
 # tool registry and adds any newly discovered tool here, defaulting it
 # to enabled. Your existing values are never overwritten, so anything
 # you change in here sticks across upgrades.

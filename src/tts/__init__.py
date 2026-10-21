@@ -1,4 +1,4 @@
-"""TTS providers for ProjectGabriel.
+"""TTS providers for ProjectYelena.
 
 Each provider takes streaming text via feed_text() and produces 16-bit PCM
 audio chunks via get_audio(). They share the same sentence-splitting +

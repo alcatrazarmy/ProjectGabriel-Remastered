@@ -1,5 +1,5 @@
 /*
- * Gabriel Voice Control - Vencord UserPlugin
+ * Yelena Voice Control - Vencord UserPlugin
  * Copyright (c) 2025 HoppouAI
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
