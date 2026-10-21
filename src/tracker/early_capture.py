@@ -41,6 +41,10 @@ def _try_early_bettercam():
         logger.debug("Early bettercam init failed on all attempts")
     except ImportError:
         logger.debug("bettercam not installed, skipping early init")
+    except Exception as exc:
+        # Optional capture may fail while importing its DirectX device factory.
+        # Keep the app usable; capture.py has a separate fallback when needed.
+        logger.debug("bettercam unavailable during early init: %s", exc)
 
 
 def take_early_camera():

@@ -2,7 +2,7 @@ import yaml
 import logging
 from datetime import datetime
 from pathlib import Path
-from src.service_config import environment_value
+from src.service_config import environment_value, env_file_values
 
 from src.model_caps import (
     TOOL_SCHEDULING,
@@ -334,6 +334,9 @@ class Config:
         env_name = self.get("local", "llm", "api_key_env", default="")
         if env_name:
             value = environment_value(env_name)
+            if not value:
+                path = self.get("local", "llm", "env_file", default="")
+                value = env_file_values(path, (env_name,)).get(env_name, "")
             if not value:
                 raise ValueError(f"Set {env_name} before connecting to the local LLM server")
             return value

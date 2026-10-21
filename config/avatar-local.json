@@ -1,10 +1,11 @@
 {
   "name": "Yelena Xiomora",
-  "mode": "standalone-local-preview",
-  "viewer_path": "D:/Avatar/Yelena-Xiomora/Yelena-viewer.html",
-  "vrm_path": "D:/Avatar/Yelena-Xiomora/Yelena-Xiomora-private.vrm",
+  "mode": "metahuman-pending",
+  "viewer_path": null,
+  "vrm_path": null,
   "live_runtime_connected": false,
   "vrchat_avatar_id": null,
   "redistribute_model": false,
-  "notes": "Local display manifest only; Yelena does not consume this file automatically. No voice, capture, account or OSC activation."
+  "notes": "Previous avatar removed from active selection at user request. Awaiting the user-selected MetaHuman assets; do not load the previous VRM.",
+  "enabled": false
 }

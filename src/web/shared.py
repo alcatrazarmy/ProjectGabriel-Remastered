@@ -130,7 +130,7 @@ def get_full_state() -> dict:
     usage_metadata = shared_state.get("usage_metadata")
 
     if session:
-        is_connected = getattr(session, "_session", None) is not None
+        is_connected = getattr(session, "is_connected", getattr(session, "_session", None) is not None)
         mic_muted = getattr(session, "_mic_muted", False)
         um = getattr(session, "_usage_metadata", None)
         if um and isinstance(um, dict):
@@ -194,6 +194,8 @@ def get_full_state() -> dict:
     return {
         "app_name": app_name,
         "is_connected": is_connected,
+        "audio_input_ready": getattr(session, "audio_input_ready", None),
+        "audio_output_ready": getattr(session, "audio_output_ready", None),
         "mic_muted": mic_muted,
         "usage_metadata": usage_metadata,
         "last_activity": shared_state.get("last_activity"),

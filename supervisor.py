@@ -2,7 +2,7 @@
 ProjectYelena Supervisor
 Runs main.py with auto-restart on crash.
 Control panel (with music management) is started by main.py.
-Uses the .venv virtual environment.
+Uses the Python environment selected by the launcher.
 """
 import subprocess
 import sys
@@ -15,12 +15,12 @@ from pathlib import Path
 
 # Get the project root directory
 PROJECT_ROOT = Path(__file__).parent.absolute()
-VENV_PYTHON = PROJECT_ROOT / ".venv" / "Scripts" / "python.exe"
+VENV_PYTHON = Path(sys.executable)
 
-# Check if venv exists
+# Keep child processes in the same Python environment as the supervisor.
 if not VENV_PYTHON.exists():
-    print(f"ERROR: Virtual environment not found at {VENV_PYTHON}")
-    print("Please create one with: uv venv")
+    print(f"ERROR: Python executable not found at {VENV_PYTHON}")
+    print("Set YELENA_PYTHON to your environment's python.exe and run run.bat.")
     sys.exit(1)
 
 # ANSI codes

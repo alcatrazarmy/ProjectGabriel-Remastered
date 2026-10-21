@@ -38,6 +38,38 @@ def test_existing_local_settings_still_work():
     assert cfg.local_llm_base_url == "http://localhost:1234/v1"
 
 
+def test_llm_reads_named_external_credential_only(tmp_path, monkeypatch):
+    path = tmp_path / ".env"
+    path.write_text('LLM_KEY="local-test-key"\nUNRELATED_SECRET=untouched\n')
+    monkeypatch.setenv("LLM_KEY", "")
+    cfg = config({"local": {"llm": {"api_key_env": "LLM_KEY", "env_file": str(path)}}})
+    assert cfg.local_llm_api_key == "local-test-key"
+    monkeypatch.setenv("LLM_KEY", "environment-key")
+    assert cfg.local_llm_api_key == "environment-key"
+
+
+def test_missing_key_does_not_prevent_app_construction(monkeypatch):
+    path = Path(__file__).resolve().parents[1] / "src/local_live/llm.py"
+    spec = importlib.util.spec_from_file_location("llm_deferred_key_test", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    monkeypatch.setenv("YELENA_TEST_KEY", "")
+    client = module.LMStudioClient(config({"local": {"llm": {
+        "api_key_env": "YELENA_TEST_KEY", "base_url": "http://node:8080/v1",
+    }}}))
+
+    async def run():
+        with pytest.raises(ValueError, match="Set YELENA_TEST_KEY"):
+            await client.start()
+        assert client._client is None
+        monkeypatch.setenv("YELENA_TEST_KEY", "newly-saved-test-key")
+        await client.start()
+        assert client._client.headers["Authorization"] == "Bearer newly-saved-test-key"
+        await client.stop()
+
+    asyncio.run(run())
+
+
 @pytest.mark.parametrize("model_ids", [["loaded-model"], [], ["one", "two"]])
 def test_llama_model_discovery_and_streaming(monkeypatch, model_ids):
     # Load only the HTTP client, bypassing the live-session package initializer.

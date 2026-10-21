@@ -1,5 +1,6 @@
 """Core session control endpoints: state, mute, reconnect, text input, personality, emotion."""
 from fastapi import APIRouter, HTTPException
+import time
 
 from ..models import EmotionInput, PersonalityInput, TextInput
 from ..shared import (
@@ -23,6 +24,23 @@ async def get_state():
 @router.get("/api/console-logs")
 async def get_console_logs():
     return list(console_logs)
+
+
+@router.get("/api/avatar-state")
+async def avatar_state(after: str = ""):
+    """Small playback snapshot for the desktop avatar; never exposes reasoning."""
+    session = shared_state.get("session")
+    fresh = time.monotonic() - getattr(session, "_avatar_audio_at", 0) < 0.3
+    logs = [dict(item) for item in list(console_logs)
+            if item.get("type") in ("transcription", "response", "error")
+            and item.get("timestamp", "") > after]
+    return {
+        "connected": bool(getattr(session, "is_connected", False)),
+        "microphone": bool(getattr(session, "audio_input_ready", False)),
+        "mouth": getattr(session, "_avatar_audio_level", 0.0) if fresh else 0.0,
+        "thinking": bool(getattr(session, "_thinking_shown", False)),
+        "events": logs,
+    }
 
 
 @router.get("/api/sevenzip-status")

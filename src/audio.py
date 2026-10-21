@@ -8,6 +8,7 @@ import warnings
 warnings.filterwarnings("ignore", message="pkg_resources is deprecated", category=UserWarning)
 os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "1")
 import pygame
+from src.audio_devices import resolve_named_device
 
 logger = logging.getLogger(__name__)
 
@@ -192,11 +193,19 @@ class AudioManager:
         self._setup_devices()
 
     def _setup_devices(self):
-        if self.config.input_device is not None:
+        input_name = self.config.get("audio", "input_device_name", default="")
+        output_name = self.config.get("audio", "output_device_name", default="")
+        if input_name:
+            self.input_device = resolve_named_device(self.pya, input_name, input_device=True)
+            logger.info("Requested microphone %s resolved to %s", input_name, self.input_device)
+        elif self.config.input_device is not None:
             self.input_device = self.config.input_device
         else:
             self.input_device = self.pya.get_default_input_device_info()["index"]
-        if self.config.output_device is not None:
+        if output_name:
+            self.output_device = resolve_named_device(self.pya, output_name, input_device=False)
+            logger.info("Requested speakers %s resolved to %s", output_name, self.output_device)
+        elif self.config.output_device is not None:
             self.output_device = self.config.output_device
         else:
             self.output_device = self.pya.get_default_output_device_info()["index"]
@@ -208,6 +217,8 @@ class AudioManager:
         self._pygame_ready = True
 
     def open_input_stream(self):
+        if self.input_device is None:
+            raise OSError("Configured microphone is not available")
         target_rate = self.config.send_sample_rate
         try:
             return self.pya.open(
@@ -248,6 +259,8 @@ class AudioManager:
             return _ResamplingInputStream(stream, native_rate, target_rate)
 
     def open_output_stream(self):
+        if self.output_device is None:
+            raise OSError("Configured speakers are not available")
         target_rate = self.config.receive_sample_rate
         try:
             return self.pya.open(

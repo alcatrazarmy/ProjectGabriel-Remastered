@@ -38,7 +38,7 @@ _HF_MODEL_BASE = "https://huggingface.co/mudler/parakeet-cpp-gguf/resolve/main"
 
 _ROOT = Path(__file__).resolve().parents[2]
 _CACHE = _ROOT / "data" / "parakeet"
-_RUNTIME_DIR = _CACHE / "runtime" / RUNTIME_VERSION
+_RUNTIME_DIR = Path(os.environ.get("YELENA_PARAKEET_RUNTIME_DIR", str(_CACHE / "runtime"))) / RUNTIME_VERSION
 _MODEL_DIR = _CACHE / "models"
 
 

@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Yelena Xiomora</title><link rel="stylesheet" href="/static/window.css"></head>
+<body><main><section id="stage" aria-label="Yelena avatar"><canvas id="avatar"></canvas><div class="caption"><span class="eyebrow">YOUR LOCAL COMPANION</span><h1>Yelena Xiomora</h1><p id="avatar-status">Loading avatar…</p></div><button id="wave" class="wave" type="button">Wave</button><div class="orbit">Drag to rotate · Scroll to zoom</div></section>
+<aside><header><span class="eyebrow">LISA’S VOICE · LOCAL XTTS</span><h2>A moment with Yelena</h2><p id="connection" role="status">Checking connection…</p></header>
+<label for="output">Voice test output</label><div class="row"><select id="output"><option value="">Windows default audio</option></select><button id="refresh-output" type="button">Refresh</button></div><p class="hint">This selector controls voice tests. Conversation audio uses the original app&#39;s audio settings.</p>
+<div class="row"><button id="sample" type="button">Test Lisa’s voice</button><button id="stop" type="button">Stop test voice</button></div>
+<div id="messages" aria-live="polite"><p class="hint">Messages go to the original app. Its configured audio output plays replies.</p></div>
+<form id="chat"><label for="text">Your message</label><textarea id="text" maxlength="500" rows="3" placeholder="Say hello to Yelena…" required></textarea><div class="row"><button id="send" type="submit">Send</button><button id="speak" type="button">Read text aloud</button></div></form>
+<p id="notice" role="status"></p><footer>Yelena's existing private avatar.<br>Live speech, breathing, blinking, and gestures.</footer></aside></main>
+<audio id="voice"></audio><script type="module" src="/static/window.js"></script></body></html>

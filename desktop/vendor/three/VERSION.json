@@ -1,0 +1,6 @@
+{
+  "package": "three",
+  "version": "0.184.0",
+  "integrity": "sha512-wtTRjG92pM5eUg/KuUnHsqSAlPM296brTOcLgMRqEeylYTh/CdtvKUvCyyCQTzFuStieWxvZb8mVTMvdPyUpxg==",
+  "modifications": "Local relative import paths in addons"
+}

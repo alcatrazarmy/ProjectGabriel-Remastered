@@ -254,6 +254,8 @@ sfx/music/*.m4a
 # plugin loader log files
 /data/logs/
 /data/voice/
+/data/avatar-inspection/
+/data/desktop-window/
 
 Screenshot 2026-02-08 083943.png
 *.pt

@@ -91,7 +91,9 @@ class LMStudioClient:
         self.config = config
         self._base_url = config.local_llm_base_url
         self._model = config.local_llm_model
-        self._api_key = config.local_llm_api_key
+        # Resolve credentials when connecting so the control panel can start
+        # and show setup errors even before a key has been saved.
+        self._api_key = None
         self._temperature = config.local_llm_temperature
         self._top_p = config.local_llm_top_p
         self._max_tokens = config.local_llm_max_tokens
@@ -108,6 +110,7 @@ class LMStudioClient:
 
     async def start(self):
         if self._client is None:
+            self._api_key = self.config.local_llm_api_key
             self._client = httpx.AsyncClient(
                 base_url=self._base_url,
                 timeout=httpx.Timeout(self._timeout, read=None),

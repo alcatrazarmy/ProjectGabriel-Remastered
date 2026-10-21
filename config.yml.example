@@ -1,10 +1,11 @@
 # ╔══════════════════════════════════════════════════════════╗
 # ║              ProjectYelena Configuration                ║
 # ╚══════════════════════════════════════════════════════════╝
-# Copy this file to config.yml and fill in your values.
+# Filled for this PC: Lisa Ann llama.cpp, Lisa Reichert XTTS, and Quest 3 audio.
+# The original app reads config.yml. Credentials stay in the external Jarvis file.
 
 # Display name used in the WebUI, console logs, OBS overlays, and chatbox.
-app_name: "Yelena"
+app_name: "Yelena Xiomora"
 
 # Which brain to run. Two options:
 #   gemini_live - cloud Gemini Live websocket (the original setup, native voice)
@@ -14,7 +15,7 @@ app_name: "Yelena"
 # (memory recall, conversation summary). Local mode REQUIRES one of the
 # external TTS providers under tts:* to be enabled, since LM Studio has no
 # native voice.
-backend: "gemini_live"
+backend: "local"
 
 # Privacy controls. Off by default. See README "Privacy" section.
 privacy:
@@ -33,8 +34,8 @@ logging:
   level: "INFO"
 
 gemini:
-  # Primary API key (required) - get from https://aistudio.google.com/apikey
-  api_key: "YOUR_GEMINI_API_KEY_HERE"
+  # Unused for the selected local backend; no Gemini key is required.
+  api_key: ""
 
   # Backup keys for automatic rotation when rate limited (optional)
   # The system will cycle through these when the primary key hits quota limits
@@ -217,16 +218,16 @@ gemini:
 local:
   llm:
     # OpenAI compatible endpoint. LM Studio defaults to localhost:1234.
-    base_url: "http://localhost:1234/v1"
+    base_url: "http://192.168.50.190:8080/v1"
     # Optional environment names, also read from saved Windows user variables.
     # Lisa Ann setup: see LOCAL-SERVICES.md. Keep actual keys out of this file.
-    base_url_env: ""
-    api_key_env: ""
+    base_url_env: "LISA_ANN_BASE_URL"
+    api_key_env: "LLM_KEY"
     # Model identifier as shown in LM Studio. The default placeholder works
     # because LM Studio routes to whatever is loaded, but be explicit when
     # you can.
-    model: "local-model"
-    api_key: "lm-studio"
+    model: "auto"
+    api_key: ""
     temperature: 0.8
     top_p: 0.95
     max_tokens: 1024
@@ -258,6 +259,8 @@ local:
     # How many query-matched tools to auto-include each turn on top of core.
     dynamic_tools_max: 8
 
+    # Existing Jarvis credential file. Only LLM_KEY is read; no key is stored here.
+    env_file: C:/Users/brandon/.jarvis/.env
   vision:
     # When true, captures the screen and attaches an image to every user
     # turn. Requires a multimodal model loaded in LM Studio (eg qwen2.5-vl).
@@ -333,17 +336,17 @@ local:
 # the plugin registered (eg "pocket_tts" from the omnivoice plugin) and that
 # voice gets used. No extra field needed.
 tts:
-  provider: "gemini"
+  provider: "xtts_service"
 
   # Providers the AI can switch to at runtime via the switchTTSProvider tool.
   # Must be a list of provider names: "gemini", "hoppou", "chirp3_hd", "tiktok"
-  switchable_providers: ["gemini"]
+  switchable_providers: []
 
   # ElevenLabs cloud speech; select provider: "elevenlabs" and enable plugins.
   # Credentials stay in your existing external file or ELEVENLABS_API_KEY env.
   elevenlabs:
-    env_file: ""
-    voice_id: ""  # Optional override of ELEVENLABS_VOICE_ID for this character.
+    env_file: "D:/Projects/openmontage-birthday/pip-live/env/.env"
+    voice_id: "cgSgspJ2msm6clMCkdW9" # Optional override of ELEVENLABS_VOICE_ID for this character.
     model: ""     # Otherwise use ELEVENLABS_MODEL_ID or eleven_multilingual_v2.
     timeout: 60
 
@@ -351,11 +354,11 @@ tts:
   # enable plugins to load the bundled adapter. See LOCAL-SERVICES.md.
   xtts_service:
     base_url: "http://127.0.0.1:8095"
-    voice: "Alexandra Hisakawa"
+    voice: "Lisa Reichert"
     timeout: 180
     # For the bundled local server: set voice to "Lisa Reichert" and point
     # model_dir at the downloaded checkpoint. See Start-Yelena-Voice.ps1.
-    model_dir: "D:/Models/Yelena/Public_Domain_Lisa_Reichert_XTTS_2.0.2"
+    model_dir: "A:/Public_Domain_Lisa_Reichert_XTTS_2.0.2"
 
   # Hoppou AI cloud TTS settings (only used when provider is "hoppou")
   hoppou:
@@ -434,8 +437,10 @@ tts:
 audio:
   # Audio device indices - null uses system default
   # Run `python -c "import pyaudio; p=pyaudio.PyAudio(); [print(i, p.get_device_info_by_index(i)['name']) for i in range(p.get_device_count())]"` to list devices
-  input_device: null
-  output_device: null
+  # Steam Link microphone: the stable name below takes priority over this index.
+  input_device: 1
+  # Steam Link speakers: the stable name below takes priority over this index.
+  output_device: 3
 
   # Sample rates (don't change unless you know what you're doing)
   send_sample_rate: 16000
@@ -460,6 +465,9 @@ audio:
     enabled: false                 # Set to true to allow pitch shifting
     max_semitones: 12              # Maximum allowed shift in either direction (1-24)
 
+  # Steam Link device name prefixes take priority over numeric indices.
+  input_device_name: Microphone (Steam Streaming
+  output_device_name: Speakers (Steam Streaming Speak
 vrchat:
   # VRChat OSC settings
   osc_ip: "127.0.0.1"
@@ -485,16 +493,16 @@ vrchat:
   idle_chatbox:
     enabled: false
     # Header text at the top of the banner
-    banner: "Yelena AI"
+    banner: "Yelena Xiomora"
     # Character used for divider lines (also used in the live music gen display)
-    divider: "\u2500"
+    divider: "─"
     # Number of times the divider character is repeated (also used in the live music gen display)
     divider_length: 14
     # Up to 3 lines of text between dividers (empty strings are skipped)
     lines:
-      - "VRChat AI Assistant"
-      - "Listening for voice"
-      - ""
+    - "VRChat AI Assistant"
+    - "Listening for voice"
+    - ""
     # How often (seconds) to refresh the banner (updates clock/active time)
     update_interval: 30
 
@@ -530,7 +538,7 @@ music:
 yolo:
   # Master switch -- set to false to completely disable the player-following system
   # (removes the tool declarations from Gemini and skips tracker init)
-  enabled: true
+  enabled: false
 
   # Live YOLO stream + per-setting sliders are in the main WebUI under the Vision tab.
 
@@ -611,28 +619,28 @@ motion:
   # Needs the ARDY backend (--model core8), the server tells the client which
   # one it is running and this stays off on DART.
   expression:
-    enabled: true
+    enabled: false
     # Prompts here have to name a concrete, physical, whole-body gesture. The
     # motion model renders those and quietly ignores subtle or mood based ones
     # ("looks around slowly, bored" generates literally nothing). Screen your
     # own with: motion_server/.venv-ardy/Scripts/python benchmarks/ardy_prompts.py
     # Gestures while speaking, rotated so a long answer isn't one looping wave.
     talking:
-      - "a person gestures emphatically while speaking"
-      - "a person talks while gesturing with both hands"
-      - "a person nods while talking, hands relaxed"
-      - "a person spreads their arms wide while talking"
-      - "a person talks casually, one hand moving as they explain"
-      - "a person points ahead while explaining something"
+    - "a person gestures emphatically while speaking"
+    - "a person talks while gesturing with both hands"
+    - "a person nods while talking, hands relaxed"
+    - "a person spreads their arms wide while talking"
+    - "a person talks casually, one hand moving as they explain"
+    - "a person points ahead while explaining something"
     # Played while she is thinking or digging through memories.
     thinking: "a person scratches their head and shrugs"
     # Fidgets once she's been quiet for idle_after seconds.
     idle:
-      - "a person stretches both arms above their head"
-      - "a person swings their arms and stretches their back"
-      - "a person scratches the back of their head"
-      - "a person yawns and stretches their arms out wide"
-      - "a person leans on one leg and folds their arms"
+    - "a person stretches both arms above their head"
+    - "a person swings their arms and stretches their back"
+    - "a person scratches the back of their head"
+    - "a person yawns and stretches their arms out wide"
+    - "a person leans on one leg and folds their arms"
     # Seconds before the talking gesture switches to a different one.
     switch_interval: 6.0
     # Seconds of quiet before the idle fidgets start.
@@ -643,7 +651,7 @@ motion:
 vision:
   # Screen capture for Gemini Live vision
   # Allows the AI to SEE what's on your screen
-  enabled: true
+  enabled: false
 
   # Monitor index to capture (0 = all monitors combined, 1 = primary, 2 = secondary, etc.)
   # Run `python -c "import mss; s=mss.mss(); [print(i, m) for i,m in enumerate(s.monitors)]"` to list
@@ -694,7 +702,7 @@ memory:
   backend: "sqlite"
 
   # SQLite settings (used if backend is "sqlite")
-  sqlite_path: "data/yelena_memories.sqlite"
+  sqlite_path: "data/companion_memories.sqlite"
 
   # MongoDB settings (used if backend is "mongo")
   # Set YELENA_MONGO_URI environment variable, or configure below
@@ -720,7 +728,7 @@ memory:
   # RAG provider: "gemini" (cloud, requires MongoDB) or "local" (ChromaDB + LM Studio)
   # "gemini" - uses Gemini embedding API + MongoDB Atlas vector search
   # "local"  - uses local embedding model via LM Studio + ChromaDB vector DB (no cloud needed)
-  rag_provider: "gemini"
+  rag_provider: "local"
 
   # -- Gemini RAG settings (rag_provider: "gemini") --
   # Requires MongoDB backend. Gemini embedding API has 100 RPM limit on free tier.
@@ -731,9 +739,9 @@ memory:
   # Requires LM Studio running with an embedding model loaded.
   # Works with any backend (sqlite or mongo).
   # See README for setup instructions.
-  lm_studio_url: "http://localhost:1234"          # LM Studio server URL
+  lm_studio_url: "http://127.0.0.1:1234"          # LM Studio server URL
   local_embedding_model: "text-embedding-embeddinggemma-300m-qat"  # Model loaded in LM Studio
-  chroma_dir: "data/yelena_chroma_db"                 # ChromaDB storage directory
+  chroma_dir: "data/companion_chroma_db"              # ChromaDB storage directory
 
   # Vector similarity thresholds (per-provider, since local models score lower)
   vector_min_score_gemini: 0.82               # Gemini embeddings: higher scores, stricter threshold
@@ -757,7 +765,7 @@ emotions:
   talking_switch_interval: 5.0
 
   # Idle animation - plays when nobody is speaking for a while
-  idle_enabled: true               # Enable/disable idle animation
+  idle_enabled: false              # Enable/disable idle animation
   idle_animation: "sad-idle"       # Animation name to play when idle (must be defined below)
   idle_timeout: 10                 # Seconds of silence before idle animation starts
 
@@ -856,7 +864,7 @@ social:
   server_url: "http://localhost:3000"
   # Your API key (must match a key in the social server's config.yml)
   # Leave blank if the server is in open mode
-  api_key: "YOUR_SOCIAL_API_KEY"
+  api_key: ""
   # Password for open mode servers (used to register/login without an API key)
   # Leave blank if using API key auth
   password: ""

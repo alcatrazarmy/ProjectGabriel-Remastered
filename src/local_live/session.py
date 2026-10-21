@@ -25,6 +25,7 @@ Flow:
 from __future__ import annotations
 
 import asyncio
+from array import array
 import io
 import json
 import logging
@@ -170,6 +171,7 @@ class LocalLiveSession:
         # at it, otherwise we use the built in Silero VAD + parakeet pipeline.
         self._stt = self._make_stt_provider(config)
         self._llm = LMStudioClient(config)
+        self.is_connected = False
 
         # cached prompt + tools so LM Studio's prefix cache actually hits
         # across turns. rebuilt on personality switch or reconnect, same idea
@@ -382,14 +384,18 @@ class LocalLiveSession:
 
     async def run(self):
         """Open mic/speaker streams, launch loops, supervise."""
-        # boot stt + llm
+        self.is_connected = False
+        # Validate the AI connection before loading/downloading speech models.
+        # Configuration failures stay in the session retry loop, leaving the
+        # original control panel available to show the error.
+        await self._llm.start()
         self._stt.start()
         if not self._stt.ready:
             err = self._stt.load_error or "unknown error"
             logger.error(f"local: STT failed to start: {err}")
             _broadcast_console("error", f"STT init failed: {err}")
+            await self._llm.stop()
             raise RuntimeError(f"STT init failed: {err}")
-        await self._llm.start()
 
         logger.info("local backend connected (OpenAI-compatible LLM + parakeet)")
         _broadcast_console("info",
@@ -399,13 +405,39 @@ class LocalLiveSession:
         self.tool_handler.session = None
         self.tool_handler.live_session = self
 
-        input_stream = self.audio.open_input_stream()
-        output_stream = self.audio.open_output_stream()
+        self.audio_input_ready = False
+        self.audio_output_ready = False
+        input_stream = None
+        try:
+            input_stream = self.audio.open_input_stream()
+            self.audio_input_ready = True
+        except OSError as exc:
+            logger.warning(f"Microphone unavailable ({exc}); dashboard text input remains available")
+            _broadcast_console("info", "Microphone unavailable. Use the dashboard text box until the headset is connected.")
+        try:
+            try:
+                output_stream = self.audio.open_output_stream()
+            except OSError:
+                default_output = self.audio.pya.get_default_output_device_info()
+                if default_output["index"] == self.audio.output_device:
+                    raise
+                self.audio.output_device = default_output["index"]
+                output_stream = self.audio.open_output_stream()
+                name = default_output.get("name", "Windows default output")
+                logger.warning(f"Configured speaker unavailable; using {name}")
+                _broadcast_console("info", f"Headset audio unavailable. Voice is playing through {name}.")
+            self.audio_output_ready = True
+        except Exception:
+            if input_stream:
+                input_stream.close()
+            self._stt.stop()
+            await self._llm.stop()
+            raise
+        self.is_connected = True
 
         tasks: list[asyncio.Task] = []
         try:
             task_specs = [
-                ("mic", self._mic_loop(input_stream)),
                 ("turn-pump", self._turn_pump_loop()),
                 ("stt-partials", self._stt_partial_loop()),
                 ("barge-in", self._barge_in_loop()),
@@ -415,6 +447,8 @@ class LocalLiveSession:
                 ("now-playing", self._now_playing_loop()),
                 ("reconnect-monitor", self._reconnect_monitor_loop()),
             ]
+            if input_stream is not None:
+                task_specs.append(("mic", self._mic_loop(input_stream)))
             tasks = [
                 asyncio.create_task(coro, name=f"local-{name}")
                 for name, coro in task_specs
@@ -427,6 +461,9 @@ class LocalLiveSession:
                 if exc:
                     raise exc
         finally:
+            self.is_connected = False
+            self.audio_input_ready = False
+            self.audio_output_ready = False
             for t in tasks:
                 t.cancel()
             if tasks:
@@ -1015,9 +1052,14 @@ class LocalLiveSession:
                 for i in range(0, len(audio_data), CHUNK):
                     if self._playback_interrupted:
                         break
+                    chunk = audio_data[i:i + CHUNK]
+                    samples = array("h", chunk)
+                    self._avatar_audio_level = min(1.0, (sum(s * s for s in samples) / max(1, len(samples))) ** 0.5 / 32768 * 7)
+                    self._avatar_audio_at = time.monotonic()
                     await asyncio.to_thread(
-                        output_stream.write, audio_data[i:i + CHUNK]
+                        output_stream.write, chunk
                     )
+                self._avatar_audio_level = 0.0
                 if self._playback_interrupted:
                     self._playback_interrupted = False
                 # only clear audio_playing if nothing else is queued, otherwise
@@ -1027,6 +1069,7 @@ class LocalLiveSession:
             except asyncio.CancelledError:
                 return
             except OSError:
+                self._avatar_audio_level = 0.0
                 return
             except Exception as e:
                 logger.error(f"play audio loop error: {e}")
