@@ -1,0 +1,21 @@
+# Dot-source this file before any approved Gabriel commands.
+# This file sets process-local paths; it does not start Gabriel or any sensors.
+$env:UV_CACHE_DIR = 'D:\Caches\uv'
+$env:UV_PROJECT_ENVIRONMENT = 'A:\Tools\gabriel-venv'
+$env:UV_PYTHON_INSTALL_DIR = 'A:\Tools\Python'
+$env:UV_LINK_MODE = 'copy'
+$env:PIP_CACHE_DIR = 'D:\Caches\pip'
+$env:HF_HOME = 'D:\Caches\Gabriel\huggingface'
+$env:TORCH_HOME = 'D:\Caches\Gabriel\torch'
+$env:XDG_CACHE_HOME = 'D:\Caches\Gabriel'
+$env:NLTK_DATA = 'D:\Caches\Gabriel\nltk'
+$env:MPLCONFIGDIR = 'D:\Caches\Gabriel\matplotlib'
+$env:YOLO_CONFIG_DIR = 'D:\AppData\Gabriel\ultralytics'
+$env:TEMP = 'D:\Temp'
+$env:TMP = 'D:\Temp'
+$env:PYTHONDONTWRITEBYTECODE = '1'
+$env:HF_HUB_OFFLINE = '1'
+$env:HF_HUB_DISABLE_TELEMETRY = '1'
+$env:ANONYMIZED_TELEMETRY = 'False'
+$env:PATH = 'A:\Tools\gabriel-venv\Scripts;' + $env:PATH
+Set-Location 'D:\Projects\ProjectGabriel-Remastered'

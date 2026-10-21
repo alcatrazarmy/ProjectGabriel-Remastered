@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "blocked_attempts": [],
+  "test_files": [
+    "tests/test_pathfinder_and_waypoints.py",
+    "tests/test_voxel_nav.py"
+  ],
+  "device_import_guard": true,
+  "network_and_subprocess_audit_guard": true,
+  "pytest_plugin_autoload": false,
+  "temp": "D:\\Temp"
+}

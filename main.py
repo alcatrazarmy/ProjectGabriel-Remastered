@@ -59,7 +59,7 @@ def setup_control_server(session, audio, personality, memory, get_emotion_fn, co
         shared_state["get_emotion_fn"] = get_emotion_fn
         shared_state["config"] = config
         logger.info("Starting control panel on http://localhost:8766")
-        config = uvicorn.Config(app, host="0.0.0.0", port=8766, log_level="warning")
+        config = uvicorn.Config(app, host="127.0.0.1", port=8766, log_level="warning")
         server = uvicorn.Server(config)
         server.install_signal_handlers = lambda: None  # Don't override main app's signals
         return server

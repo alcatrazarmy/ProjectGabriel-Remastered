@@ -1,0 +1,18 @@
+{
+  "python_files_syntax_checked": 219,
+  "disabled_named_tools": 143,
+  "config_parsed": true,
+  "runtime_executed": false,
+  "note": "Approved navigation tests executed only. Application runtime remains unlaunched. Female avatar required and selection pending.",
+  "offline_navigation_tests": {
+    "passed": 29,
+    "failed": 0,
+    "errors": 0,
+    "test_files": [
+      "tests/test_pathfinder_and_waypoints.py",
+      "tests/test_voxel_nav.py"
+    ],
+    "guard_report": "offline-test-guards.json"
+  },
+  "project_tests_executed": true
+}

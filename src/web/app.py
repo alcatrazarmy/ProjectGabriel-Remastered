@@ -41,7 +41,7 @@ async def _on_startup():
     start_state_broadcast()
 
 
-def run_control_server(host: str = "0.0.0.0", port: int = 8766):
+def run_control_server(host: str = "127.0.0.1", port: int = 8766):
     cfg = shared_state.get("config")
     name = cfg.app_name if cfg else "Control Panel"
     print(f"{name} Control Panel")

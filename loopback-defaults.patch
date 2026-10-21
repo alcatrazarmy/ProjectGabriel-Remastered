@@ -1,0 +1,26 @@
+diff --git a/main.py b/main.py
+index bf5b7a6..84496f4 100644
+--- a/main.py
++++ b/main.py
+@@ -59,7 +59,7 @@ def setup_control_server(session, audio, personality, memory, get_emotion_fn, co
+         shared_state["get_emotion_fn"] = get_emotion_fn
+         shared_state["config"] = config
+         logger.info("Starting control panel on http://localhost:8766")
+-        config = uvicorn.Config(app, host="0.0.0.0", port=8766, log_level="warning")
++        config = uvicorn.Config(app, host="127.0.0.1", port=8766, log_level="warning")
+         server = uvicorn.Server(config)
+         server.install_signal_handlers = lambda: None  # Don't override main app's signals
+         return server
+diff --git a/src/web/app.py b/src/web/app.py
+index 7859049..a416c27 100644
+--- a/src/web/app.py
++++ b/src/web/app.py
+@@ -41,7 +41,7 @@ async def _on_startup():
+     start_state_broadcast()
+ 
+ 
+-def run_control_server(host: str = "0.0.0.0", port: int = 8766):
++def run_control_server(host: str = "127.0.0.1", port: int = 8766):
+     cfg = shared_state.get("config")
+     name = cfg.app_name if cfg else "Control Panel"
+     print(f"{name} Control Panel")

@@ -27,30 +27,30 @@ The project is a monolithic Python app. `main.py` is the entry point, `superviso
 - Tool calls in Live are manual: execute the function, send `FunctionResponse` back.
 - Thinking config: `types.ThinkingConfig(thinking_budget=..., include_thoughts=...)` in `LiveConnectConfig`.
 - Context window compression: `types.ContextWindowCompressionConfig` with `SlidingWindow`.
-- Session resumption: handle persisted to `data/session_handle.txt`, 2 hour expiry.
+- Session resumption: handle persisted to `data/session_handle.txt`, 2 hour expiry. If the stored handle is missing, expired, or rejected, delete `data/session_handle.txt` and start a new Live session without resumption. Each Live session stores its resumption handle in its own file: the main session uses `data/session_handle.txt`, and the Discord session uses `data/discord_session_handle.txt`. Never share a handle between sessions.
 
 ## Key Architecture
 
 ### API Key Rotation
-Keys in `config.yml` (primary + backup list). On 429/quota errors, `Config.rotate_key()` cycles to the next key and the session reconnects automatically.
+Keys in `config.yml` (primary + backup list). On 429/quota errors, `Config.rotate_key()` cycles to the next key and the session reconnects automatically. After all keys have hit quota errors, wait 5 minutes, reset the rotation to the primary key, and try again. Repeat this cycle until a connection succeeds or the app is restarted. For any other Live session disconnect or error (not 429/quota), retry the connection with exponential backoff, starting at 1 second and capped at 30 seconds. After 5 consecutive failures, stop reconnecting, log an error with the last failure reason, and surface the outage in the WebUI and console.
 
 ### Audio Pipeline
-Mic -> PyAudio input -> Gemini Live (raw PCM 16kHz mono) -> `AudioManager.process_output_audio()` (boost/distortion) -> PyAudio output. Music/SFX go through pygame.mixer to system output.
+Mic -> PyAudio input (raw PCM 16kHz mono) -> Gemini Live -> Gemini Live audio output (raw PCM, sample rate per the Live API response, typically 24kHz) -> `AudioManager.process_output_audio()` (boost/distortion) -> PyAudio output. Music/SFX go through pygame.mixer to system output.
 
 ### VRChat OSC
-Chatbox: `/chatbox/input`, typing indicator: `/chatbox/typing`, voice toggle: `/input/Voice`, movement: `/input/MoveForward`, `/input/LookHorizontal`, `/input/Run`. Grab/Drop: `/input/GrabRight`, Use: `/input/UseRight`. Smooth look uses EMA with ramp. Crouch/crawl via pynput keyboard. Chatbox has 144 char limit with auto pagination `(1/N)`.
+Chatbox: `/chatbox/input`, typing indicator: `/chatbox/typing`, voice toggle: `/input/Voice`, movement: `/input/MoveForward`, `/input/LookHorizontal`, `/input/Run`. Grab/Drop: `/input/GrabRight`, Use: `/input/UseRight`. Smooth look uses EMA with smoothing factor `alpha` from config (default 0.2). On a new look target, ramp the input from the current value to the target over 0.5 seconds using linear interpolation. Crouch/crawl via pynput keyboard. Chatbox messages are limited to 144 characters per page, including the `(1/N)` page suffix. Split on word boundaries where possible, and hard-split words longer than the available space.
 
 ### Memory System
-MongoDB Atlas (primary) or SQLite (fallback). Types: `long_term`, `short_term`, `quick_note`. Vector search via Gemini embeddings or local LM Studio + ChromaDB. Tools: `saveMemory`, `searchMemories`, `deleteMemory`, `listMemories`, `recallMemories`. Each tool is a separate `FunctionDeclaration` to avoid Gemini Live 1011 errors.
+Memory storage uses MongoDB Atlas. If the MongoDB connection fails at startup, use SQLite for the session and log a warning with the connection error. If MongoDB fails at runtime, keep using SQLite until the next app restart. Types: `long_term`, `short_term`, `quick_note`. Vector search backend is selected by `rag_provider` in the memory config: `gemini` uses Gemini embeddings, `local` uses local LM Studio + ChromaDB. If unset, default to `gemini`. Tools: `saveMemory`, `searchMemories` (keyword + semantic lookup returning raw matching records), `deleteMemory`, `listMemories` (browse by `memoryType`: `long_term`, `short_term`, or `quick_note`, and/or by `category`, a free-text label stored on each memory), `recallMemories` (AI-summarized search across all memories). Call `recallMemories` when the user asks a conversational question about past events or preferences and wants a summary. Call `searchMemories` only when a specific memory is requested by exact keyword or the raw matching records are wanted. Do not call both for the same request. Each tool is a separate `FunctionDeclaration` to avoid Gemini Live 1011 errors.
 
 ### Prompt & Personality System
-Prompts in `config/prompts/`: base prompts (`prompts.yml`), auto appends (`appends.yml`), switchable personalities (`personalities.yml`). Supports `{date}`, `{memories}` placeholders. Model can call `switch_personality` to change modes mid session.
+Prompts in `config/prompts/`: base prompts (`prompts.yml`), auto appends (`appends.yml`), switchable personalities (`personalities.yml`). Supports `{date}`, `{memories}` placeholders. Model can call `switchPersonality` to change modes mid session. It is a registered tool (`PersonalityTools` in `src/tools/personalities.py`) taking a `personalityId` that must match an entry in `personalities.yml`; unknown or disabled IDs return an error result without switching.
 
 ## Adding a New Tool
 
 1. Create a file in `src/tools/` with a class decorated `@register_tool` extending `BaseTool`.
 2. Implement `declarations(self, config=None)` returning `list[types.FunctionDeclaration]`.
-3. Implement `async handle(self, name, args)` returning a dict result or `None` if not handled.
+3. Implement `async handle(self, name, args)` returning a dict result or `None` if not handled. If handling raises, catch and log it and return a dict such as `{"result": "error", "error": "<short message>"}` so the Live session still receives a `FunctionResponse`. Never let an exception escape `handle()`.
 4. Import the module in `src/tools/_handler.py :: ToolHandler.__init__()` to trigger registration.
 5. Include `\n**Invocation Condition:**` in each tool's description.
 6. Access shared state via `self.handler` (audio, osc, tracker, config, etc).
@@ -78,7 +78,7 @@ class MyTool(BaseTool):
 
 ## Plugin System
 
-Plugins live in `plugins/<name>/` with a `plugin.yml` manifest and `__init__.py`. Classes subclass `src.plugins.Plugin` with `setup(ctx)` / `teardown(ctx)`. The `PluginContext` exposes registries for tools, TTS, STT, chatbox sources, prompt contributors, events, and mid session text injection. A `ctx.discord` sub context does the same for the Discord bot's separate Gemini Live session. Plugins are loaded before `GeminiLiveSession` so `@register_tool` fires before `ToolHandler` reads the registry. Plugins live in a separate repo at [HoppouAI/ProjectGabriel-Plugins](https://github.com/HoppouAI/ProjectGabriel-Plugins).
+Plugins live in `plugins/<name>/` with a `plugin.yml` manifest and `__init__.py`. Classes subclass `src.plugins.Plugin` with `setup(ctx)` / `teardown(ctx)`. The `PluginContext` exposes registries for tools, TTS, STT, chatbox sources, prompt contributors, events, and mid session text injection. A `ctx.discord` sub context does the same for the Discord bot's separate Gemini Live session. Plugins are loaded before `GeminiLiveSession` so `@register_tool` fires before `ToolHandler` reads the registry. If a plugin's `setup(ctx)` raises an exception, log the error with the plugin name, call that plugin's `teardown(ctx)` if setup partially completed, skip the plugin, and continue starting the app. Plugins live in a separate repo at [HoppouAI/ProjectGabriel-Plugins](https://github.com/HoppouAI/ProjectGabriel-Plugins).
 
 ## Key Files
 

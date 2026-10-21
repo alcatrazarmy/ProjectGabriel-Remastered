@@ -1,0 +1,10 @@
+{
+  "name": "Yelena Xiomora",
+  "mode": "standalone-local-preview",
+  "viewer_path": "D:/Avatar/Yelena-Xiomora/Yelena-viewer.html",
+  "vrm_path": "D:/Avatar/Yelena-Xiomora/Yelena-Xiomora-private.vrm",
+  "live_runtime_connected": false,
+  "vrchat_avatar_id": null,
+  "redistribute_model": false,
+  "notes": "Local display manifest only; Gabriel does not consume this file automatically. No voice, capture, account or OSC activation."
+}
